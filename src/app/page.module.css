@@ -346,6 +346,7 @@
 .marqueeOverlayVisible {
   transform: translateY(0) !important;
   opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 .marqueeCategory {
@@ -1563,7 +1564,8 @@
   }
 
   .aboutImageWrapper {
-    height: 260px;
+    height: auto;
+    min-height: 300px;
   }
 
   .aboutContent {
