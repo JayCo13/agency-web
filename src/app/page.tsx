@@ -163,10 +163,10 @@ export default function Home() {
               </p>
               <div className={styles.aboutCard}>
                 <div className={styles.aboutImageWrapper}>
-                  <img src="/aboutus.png" alt="Jayden - Lead System Architect" className={styles.aboutImage} />
+                  <img src="/aboutus.png" alt="Tyler - Lead System Architect" className={styles.aboutImage} />
                 </div>
                 <div className={styles.aboutContent}>
-                  <h3>Jayden</h3>
+                  <h3>Tyler</h3>
                   <div className={styles.aboutRole}>Lead System Architect</div>
                   <p>
                     With 2+ years designing complex full-stack ecosystem for European partners, I ensure every system is GDPR-compliant, DACH-standard ready, and hardwired for zero-latency math.

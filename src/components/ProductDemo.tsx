@@ -1,32 +1,54 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Stage, PresentationControls, useGLTF } from '@react-three/drei';
+import { Stage, PresentationControls, useGLTF, useProgress, Html } from '@react-three/drei';
 import styles from '../app/page.module.css';
 
-// Feature 1: Bespoke Metal Fabrication
-const MetalPart = () => {
-  const { scene } = useGLTF('/modern_house.glb');
-  return <primitive object={scene} dispose={null} />;
-};
+const MODEL_PATHS = ['/modern_house.glb', '/abstract_ball.glb', '/cube.glb'] as const;
 
-// Feature 2: Modular Storage Systems
-const StorageSystem = () => {
-  const { scene } = useGLTF('/abstract_ball.glb');
-  return <primitive object={scene} dispose={null} />;
-};
+// Preload ALL models on page load so tab switching is instant
+MODEL_PATHS.forEach((path) => useGLTF.preload(path));
 
-// Feature 3: Architectural Components
-const ArchitecturalColumn = () => {
-  const { scene } = useGLTF('/cube.glb');
-  return <primitive object={scene} dispose={null} />;
-};
+// Loading spinner shown inside the Canvas while a model is streaming
+function Loader() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '0.75rem',
+        color: 'var(--text-muted)',
+        fontFamily: 'var(--font-inter), sans-serif',
+      }}>
+        <div style={{
+          width: 40,
+          height: 40,
+          border: '3px solid #E2E8F0',
+          borderTopColor: '#0F172A',
+          borderRadius: '50%',
+          animation: 'spin 0.8s linear infinite',
+        }} />
+        <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>
+          {progress.toFixed(0)}%
+        </span>
+      </div>
+    </Html>
+  );
+}
+
+// Individual model components – each uses the cached GLB
+function Model({ path }: { path: string }) {
+  const { scene } = useGLTF(path);
+  return <primitive object={scene.clone()} dispose={null} />;
+}
 
 export default function ProductDemo() {
   const [activeTab, setActiveTab] = useState(0);
 
-  // Suppress strictly Three.js internal deprecation warnings from causing next.js error overlays
+  // Suppress Three.js internal deprecation warnings
   useEffect(() => {
     const originalWarn = console.warn;
     console.warn = (...args) => {
@@ -39,9 +61,9 @@ export default function ProductDemo() {
   }, []);
 
   const tabs = [
-    { title: "Bespoke Architecture", component: <MetalPart />, rotation: [0.05, 0, 0] as [number, number, number], offsetY: '-10%' },
-    { title: "Parametric Sphere", component: <StorageSystem />, rotation: [0.4, -0.6, 0] as [number, number, number], offsetY: '0%' },
-    { title: "Modular Monolith", component: <ArchitecturalColumn />, rotation: [0.4, -0.6, 0] as [number, number, number], offsetY: '0%' }
+    { title: "Bespoke Architecture", path: MODEL_PATHS[0], rotation: [0.05, 0, 0] as [number, number, number], offsetY: '-10%' },
+    { title: "Parametric Sphere",   path: MODEL_PATHS[1], rotation: [0.4, -0.6, 0] as [number, number, number], offsetY: '0%' },
+    { title: "Modular Monolith",    path: MODEL_PATHS[2], rotation: [0.4, -0.6, 0] as [number, number, number], offsetY: '0%' }
   ];
 
   return (
@@ -81,25 +103,24 @@ export default function ProductDemo() {
             <div className={styles.browserDot}></div>
             <div className={styles.browserDot}></div>
             <div style={{ marginLeft: '1rem', color: '#9CA3AF', fontSize: '0.875rem', fontFamily: 'var(--font-geist-mono), monospace' }}>
-              https://Jayden.com/
+              https://ticosystem.com/
             </div>
           </div>
 
           <div style={{ width: '100%', height: '100%', cursor: 'grab', background: 'radial-gradient(circle at center, #F8FAFC 0%, #E2E8F0 100%)' }}>
-            {/* We offset the canvas vertically per-model so uneven bounding boxes sit perfectly center */}
             <div style={{ width: '100%', height: '100%', transform: `translateY(${tabs[activeTab].offsetY})`, transition: 'transform 0.4s ease' }}>
               <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 4], fov: 50 }}>
-                <PresentationControls 
+                <PresentationControls
                   key={activeTab}
-                  speed={1.5} 
-                  global 
-                  zoom={0.8} 
-                  rotation={tabs[activeTab].rotation} 
+                  speed={1.5}
+                  global
+                  zoom={0.8}
+                  rotation={tabs[activeTab].rotation}
                   polar={[-Math.PI / 3, Math.PI / 3]}
                 >
-                  <Suspense fallback={null}>
+                  <Suspense fallback={<Loader />}>
                     <Stage environment="city" intensity={0.6}>
-                      {tabs[activeTab].component}
+                      <Model path={tabs[activeTab].path} />
                     </Stage>
                   </Suspense>
                 </PresentationControls>
@@ -112,7 +133,7 @@ export default function ProductDemo() {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3" />
               </svg>
-              <span>Click & Drag to Rotate 3D Model</span>
+              <span>Click &amp; Drag to Rotate 3D Model</span>
             </div>
           </div>
         </div>

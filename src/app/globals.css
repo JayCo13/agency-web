@@ -19,7 +19,8 @@
   margin: 0;
 }
 
-html, body {
+html,
+body {
   max-width: 100vw;
   overflow-x: hidden;
   background-color: var(--bg-dark);
@@ -45,20 +46,46 @@ img {
 }
 
 /* Typography styles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-playfair), serif;
   font-weight: 600;
   line-height: 1.2;
+  font-display: fallback
 }
 
-h1 { font-size: 3.5rem; letter-spacing: -0.02em; }
-h2 { font-size: 2.5rem; letter-spacing: -0.01em; margin-bottom: 1rem; }
-h3 { font-size: 1.5rem; }
-p { line-height: 1.6; color: var(--text-muted); }
+h1 {
+  font-size: 3.5rem;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 2.5rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  line-height: 1.6;
+  color: var(--text-muted);
+}
 
 @media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 2rem; }
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
 }
 
 .container {
@@ -73,8 +100,15 @@ p { line-height: 1.6; color: var(--text-muted); }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .fade-in {
@@ -88,6 +122,8 @@ p { line-height: 1.6; color: var(--text-muted); }
   justify-content: center;
   padding: 0.875rem 1.75rem;
   font-size: 1rem;
+  font-family: var(--font-inter), sans-serif;
+  font-display: fallback;
   font-weight: 600;
   border-radius: 8px;
   transition: all 0.2s ease;
@@ -130,4 +166,8 @@ p { line-height: 1.6; color: var(--text-muted); }
 .reveal-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
