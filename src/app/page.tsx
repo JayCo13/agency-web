@@ -166,10 +166,10 @@ export default function Home() {
                   <img src="/aboutus.png" alt="Tyler - Lead System Architect" className={styles.aboutImage} />
                 </div>
                 <div className={styles.aboutContent}>
-                  <h3>Tyler</h3>
-                  <div className={styles.aboutRole}>Lead System Architect</div>
+                  <h3>Tyler Tai Co</h3>
+                  <div className={styles.aboutRole}>Tech Lead / Team Leader</div>
                   <p>
-                    With 2+ years designing complex full-stack ecosystem for European partners, I ensure every system is GDPR-compliant, DACH-standard ready, and hardwired for zero-latency math.
+                    With 2+ years leading full-stack teams, I build complex digital ecosystems for diverse markets. Drawing on my experience with European partners, I guide my team to deliver systems that meet rigorous global standards—ensuring they are GDPR-compliant, DACH-ready, and hardwired for zero-latency performance.
                   </p>
                   <div style={{ marginTop: '2rem' }}>
                     <a href="https://www.linkedin.com/in/c%E1%BB%95-tr%E1%BB%8Bnh-hi%E1%BB%81n-t%C3%A0i-7b7762384/" className={styles.linkedinBtn}>
