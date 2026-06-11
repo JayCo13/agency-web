@@ -45,8 +45,28 @@ function Model({ path }: { path: string }) {
   return <primitive object={scene.clone()} dispose={null} />;
 }
 
-export default function ProductDemo() {
+const COPY = {
+  en: {
+    heading: "Beyond Static Pages: Meet Immersive 3D Commerce.",
+    subtitle:
+      "Stop relying on boring product images. Give your clients the power to visualize, customize, and price your most complex products in real-time.",
+    tagline: "Your Industry. Your Product. Fully Configurable.",
+    tabs: ["Bespoke Architecture", "Parametric Sphere", "Modular Monolith"],
+    hint: "Click & Drag to Rotate 3D Model",
+  },
+  vi: {
+    heading: "Trải Nghiệm Sản Phẩm 3D.",
+    subtitle:
+      "Thay ảnh tĩnh bằng mô hình 3D — khách hàng tự trực quan hóa, tùy biến và xem giá tức thì.",
+    tagline: "Mọi Sản Phẩm, Tùy Biến Hoàn Toàn.",
+    tabs: ["Kiến Trúc Riêng", "Khối Cầu Tham Số", "Khối Mô-đun"],
+    hint: "Nhấn & Kéo Để Xoay Mô Hình 3D",
+  },
+} as const;
+
+export default function ProductDemo({ lang = "en" }: { lang?: "en" | "vi" }) {
   const [activeTab, setActiveTab] = useState(0);
+  const t = COPY[lang];
 
   // Suppress Three.js internal deprecation warnings
   useEffect(() => {
@@ -61,23 +81,23 @@ export default function ProductDemo() {
   }, []);
 
   const tabs = [
-    { title: "Bespoke Architecture", path: MODEL_PATHS[0], rotation: [0.05, 0, 0] as [number, number, number], offsetY: '-10%' },
-    { title: "Parametric Sphere",   path: MODEL_PATHS[1], rotation: [0.4, -0.6, 0] as [number, number, number], offsetY: '0%' },
-    { title: "Modular Monolith",    path: MODEL_PATHS[2], rotation: [0.4, -0.6, 0] as [number, number, number], offsetY: '0%' }
+    { title: t.tabs[0], path: MODEL_PATHS[0], rotation: [0.05, 0, 0] as [number, number, number], offsetY: '-10%' },
+    { title: t.tabs[1], path: MODEL_PATHS[1], rotation: [0.4, -0.6, 0] as [number, number, number], offsetY: '0%' },
+    { title: t.tabs[2], path: MODEL_PATHS[2], rotation: [0.4, -0.6, 0] as [number, number, number], offsetY: '0%' }
   ];
 
   return (
     <section id="demo" className={styles.demoSection}>
       <div className="container">
         <h2 style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 1rem' }}>
-          Beyond Static Pages: Meet Immersive 3D Commerce.
+          {t.heading}
         </h2>
         <p style={{ textAlign: 'center', marginBottom: '3rem', maxWidth: '700px', margin: '0 auto 3rem' }}>
-          Stop relying on boring product images. Give your clients the power to visualize, customize, and price your most complex products in real-time.
+          {t.subtitle}
         </p>
 
         <h3 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '1.5rem', color: 'var(--accent-blue)' }}>
-          Your Industry. Your Product. Fully Configurable.
+          {t.tagline}
         </h3>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
@@ -133,7 +153,7 @@ export default function ProductDemo() {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3" />
               </svg>
-              <span>Click &amp; Drag to Rotate 3D Model</span>
+              <span>{t.hint}</span>
             </div>
           </div>
         </div>

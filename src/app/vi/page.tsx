@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './page.module.css';
+import type { Metadata } from 'next';
+import styles from '../page.module.css';
 import ProductDemo from '@/components/ProductDemo';
 import CalendlyEmbed from '@/components/CalendlyEmbed';
 import HeroBackground3D from '@/components/HeroBackground3D';
@@ -10,45 +11,72 @@ import MarqueeGallery from '@/components/MarqueeGallery';
 import MobileNav from '@/components/MobileNav';
 import LanguageToggle from '@/components/LanguageToggle';
 
+// NOTE: This mirrors src/app/page.tsx with Vietnamese copy. The marquee
+// project names keep their original text.
+
+export const metadata: Metadata = {
+  title: 'Lập Trình Web, Hệ Thống & Tự Động Hóa AI | TicoSystem',
+  description:
+    'Chúng tôi xây dựng web app, hệ thống quản lý theo yêu cầu, chatbot AI và bot tự động hóa theo tiêu chuẩn châu Âu. Đặt lịch tư vấn miễn phí 15 phút.',
+  alternates: {
+    canonical: '/vi',
+    languages: {
+      en: '/',
+      vi: '/vi',
+      'x-default': '/',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://ticosystem.com/vi',
+    siteName: 'TicoSystem',
+    title: 'Lập Trình Web, Hệ Thống & Tự Động Hóa AI | TicoSystem',
+    description:
+      'Chúng tôi xây dựng web app, hệ thống quản lý theo yêu cầu, chatbot AI và bot tự động hóa theo tiêu chuẩn châu Âu.',
+    locale: 'vi_VN',
+    images: [{ url: '/logo.png', width: 620, height: 402, alt: 'TicoSystem' }],
+  },
+};
+
 const marqueeContent = [
-  { img: 1, category: "thiieltstrenmay.com - IELTS Practice Platform", title: "Ielts Practice System" },
-  { img: 2, category: "thiieltstrenmay.com - IELTS Practice Platform", title: "Manage System - Income line chart" },
-  { img: 3, category: "thiieltstrenmay.com - IELTS Practice Platform", title: "Ielts test room" },
-  { img: 4, category: "Blank", title: "Shutter Configurator - Switzerland" },
-  { img: 5, category: "Blank", title: "Shutter Configurator" },
-  { img: 6, category: "Blank", title: "Shutter Configurator" },
-  { img: 7, category: "CardVerseHub", title: "Trading cards Market Place" },
-  { img: 8, category: "CardVerseHub", title: "Trading cards price check" },
-  { img: 9, category: "CardVerseHub", title: "Trading cards Market Place" },
-  { img: 10, category: "Tamnguon.com", title: "The Book Store" },
-  { img: 11, category: "Tamnguon.com", title: "The Book Store - Dashboard for managing income" },
-  { img: 12, category: "Tamnguon.com", title: "The Book Store" },
-  { img: "bb-1", category: "Austria Portfolio", title: "Austria Portfolio" },
-  { img: "bb-2", category: "Austria Portfolio", title: "Austria Portfolio" },
+  { img: 1, category: 'thiieltstrenmay.com - Nền tảng luyện thi IELTS', title: 'Hệ Thống Luyện Thi IELTS' },
+  { img: 2, category: 'thiieltstrenmay.com - Nền tảng luyện thi IELTS', title: 'Hệ Thống Quản Lý - Biểu đồ doanh thu' },
+  { img: 3, category: 'thiieltstrenmay.com - Nền tảng luyện thi IELTS', title: 'Phòng Thi IELTS' },
+  { img: 4, category: 'Blank', title: 'Cấu Hình Cửa Cuốn - Thụy Sĩ' },
+  { img: 5, category: 'Blank', title: 'Cấu Hình Cửa Cuốn' },
+  { img: 6, category: 'Blank', title: 'Cấu Hình Cửa Cuốn' },
+  { img: 7, category: 'CardVerseHub', title: 'Sàn Giao Dịch Thẻ Bài' },
+  { img: 8, category: 'CardVerseHub', title: 'Kiểm Tra Giá Thẻ Bài' },
+  { img: 9, category: 'CardVerseHub', title: 'Sàn Giao Dịch Thẻ Bài' },
+  { img: 10, category: 'Tamnguon.com', title: 'Cửa Hàng Sách' },
+  { img: 11, category: 'Tamnguon.com', title: 'Cửa Hàng Sách - Dashboard quản lý doanh thu' },
+  { img: 12, category: 'Tamnguon.com', title: 'Cửa Hàng Sách' },
+  { img: 'bb-1', category: 'Portfolio Áo', title: 'Portfolio Áo' },
+  { img: 'bb-2', category: 'Portfolio Áo', title: 'Portfolio Áo' },
 ];
 
-export default function Home() {
+export default function HomeVi() {
   return (
     <div className={styles.pageWrapper}>
       {/* Header */}
       <header className={styles.header}>
         <div className={`container`} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
           <div className={styles.logo}>
-            <img src="/logo.png" alt="Agency Logo" style={{ height: '80px', width: '140px' }} />
+            <img src="/logo.png" alt="Logo TicoSystem" style={{ height: '80px', width: '140px' }} />
           </div>
           <nav className={styles.navLinks}>
-            <a href="#work" className={styles.navLink}>Work</a>
-            <a href="#demo" className={styles.navLink}>Live Demo</a>
-            <a href="#process" className={styles.navLink}>Process</a>
-            <a href="#expertise" className={styles.navLink}>Expertise</a>
+            <a href="#work" className={styles.navLink}>Dự Án</a>
+            <a href="#demo" className={styles.navLink}>Demo Trực Tiếp</a>
+            <a href="#process" className={styles.navLink}>Quy Trình</a>
+            <a href="#expertise" className={styles.navLink}>Chuyên Môn</a>
           </nav>
           <div className={styles.headerActions}>
-            <LanguageToggle current="en" />
+            <LanguageToggle current="vi" />
             <a href="#contact" className={styles.navCtaBtn}>
-              Book a Call Now
+              Đặt Lịch Ngay
             </a>
           </div>
-          <MobileNav lang="en" />
+          <MobileNav lang="vi" />
         </div>
       </header>
 
@@ -58,13 +86,13 @@ export default function Home() {
           <div className={styles.heroBackground}></div>
           <HeroBackground3D />
           <div className={`container ${styles.heroContent} fade-in`}>
-            <h1>We <em>Build</em> Web Apps, Systems &amp; AI Automation<br />That Run Your Business.</h1>
+            <h1><em>Giải Pháp</em> Công Nghệ<br />Cho Doanh Nghiệp Của Bạn</h1>
             <p className={styles.heroSubtitle}>
-              Custom web applications, business management systems, AI chatbots and automation bots — engineered to European standards.
+              Web, hệ thống quản lý và tự động hóa AI theo yêu cầu.
             </p>
             <div className={styles.heroActions}>
-              <a href="#demo" className="btn btn-primary">Get Started</a>
-              <a href="#process" className="btn btn-secondary">Our Process</a>
+              <a href="#demo" className="btn btn-primary">Bắt Đầu Ngay</a>
+              <a href="#process" className="btn btn-secondary">Quy Trình Của Chúng Tôi</a>
             </div>
           </div>
         </section>
@@ -76,31 +104,31 @@ export default function Home() {
 
         {/* Product Demo Section (Critical) */}
         <RevealOnScroll>
-          <ProductDemo />
+          <ProductDemo lang="vi" />
         </RevealOnScroll>
 
         {/* How It Works Section */}
         <RevealOnScroll>
           <section id="process" className="section">
             <div className="container">
-              <h2 style={{ textAlign: 'center' }}>The Automation Blueprint</h2>
-              <p style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>A zero-friction engineering process designed specifically for complex manufacturing workflows.</p>
+              <h2 style={{ textAlign: 'center' }}>Quy Trình Triển Khai</h2>
+              <p style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>Gọn, minh bạch và thiết kế riêng cho những bài toán phức tạp.</p>
 
               <div className={styles.processGrid}>
                 <div className={styles.processCard}>
                   <div className={styles.processIcon}>01</div>
-                  <h3 className={styles.processTitle}>Logic Mapping & Strategy</h3>
-                  <p>We don’t just write code; we decode your business. We analyze your product variations, complex pricing matrices, and sales bottlenecks to architect a bulletproof mathematical logic model for your configurator.</p>
+                  <h3 className={styles.processTitle}>Phân Tích & Chiến Lược</h3>
+                  <p>Chúng tôi không chỉ viết code mà hiểu cách doanh nghiệp bạn vận hành — phân tích sản phẩm, quy tắc giá và điểm nghẽn để dựng nền logic vững chắc.</p>
                 </div>
                 <div className={styles.processCard}>
                   <div className={styles.processIcon}>02</div>
-                  <h3 className={styles.processTitle}>Build the Engine</h3>
-                  <p>We engineer the interactive web interface and hardwire it to your exact pricing rules for instant, accurate quotes.</p>
+                  <h3 className={styles.processTitle}>Xây Dựng Hệ Thống</h3>
+                  <p>Phát triển giao diện và kết nối trực tiếp với quy tắc nghiệp vụ của bạn, cho kết quả tức thì và chính xác.</p>
                 </div>
                 <div className={styles.processCard}>
                   <div className={styles.processIcon}>03</div>
-                  <h3 className={styles.processTitle}>Deployment & Ecosystem Integration</h3>
-                  <p>We embed the configurator seamlessly into your existing website and pipe the data directly into your CRM or ERP. You stop answering repetitive pricing emails and start receiving production-ready, highly qualified leads.</p>
+                  <h3 className={styles.processTitle}>Triển Khai & Tích Hợp</h3>
+                  <p>Tích hợp liền mạch vào website và hệ thống CRM/ERP sẵn có. Bạn bớt việc thủ công, nhận về dữ liệu sạch và lead chất lượng.</p>
                 </div>
               </div>
             </div>
@@ -113,40 +141,40 @@ export default function Home() {
             <div className="container">
               <div className={styles.expertiseGrid}>
                 <div>
-                  <h2>Engineered to European Standards</h2>
-                  <p>We build robust architectures that handle complex conditional logic and integrate securely with your existing systems.</p>
+                  <h2>Kiến Trúc Đạt Chuẩn Châu Âu</h2>
+                  <p>Vững chắc, xử lý logic phức tạp và tích hợp an toàn với hệ thống sẵn có của bạn.</p>
                   <div className={styles.trustBadges}>
                     <div className={styles.badge}>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-                      GDPR Compliant
+                      Tuân Thủ GDPR
                     </div>
                     <div className={styles.badge}>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                      Enterprise-Grade CPQ
+                      CPQ Cấp Doanh Nghiệp
                     </div>
                     <div className={styles.badge}>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M2 12h20"></path></svg>
-                      EU-Hosted Data
+                      Dữ Liệu Lưu Trữ Tại EU
                     </div>
                     <div className={styles.badge}>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"></rect><rect x="2" y="16" width="6" height="6" rx="1"></rect><rect x="9" y="2" width="6" height="6" rx="1"></rect><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"></path><path d="M12 12V8"></path></svg>
-                      ERP Agnostic API
+                      API Tương Thích Mọi ERP
                     </div>
                   </div>
                 </div>
 
                 <div className={styles.archDiagram}>
-                  <h3 className={styles.archTitle}>The Zero-Touch Sales Pipeline</h3>
+                  <h3 className={styles.archTitle}>Luồng Bán Hàng Tự Động</h3>
                   <div className={`${styles.archBox} ${styles.archBoxActive}`}>
-                    Interactive Configuration Interface
+                    Giao Diện Cấu Hình Tương Tác
                   </div>
-                  <div className={styles.archArrow}><span>JSON Configuration Data</span></div>
+                  <div className={styles.archArrow}><span>Dữ Liệu Cấu Hình JSON</span></div>
                   <div className={`${styles.archBox} ${styles.archBoxCore}`}>
-                    Custom Rules & Pricing Engine
+                    Bộ Máy Quy Tắc & Định Giá Riêng
                   </div>
-                  <div className={styles.archArrow}><span>Automated Quote Generation</span></div>
+                  <div className={styles.archArrow}><span>Tạo Báo Giá Tự Động</span></div>
                   <div className={`${styles.archBox} ${styles.archBoxEnd}`}>
-                    Your ERP / CRM System
+                    Hệ Thống ERP / CRM Của Bạn
                   </div>
                 </div>
               </div>
@@ -162,27 +190,27 @@ export default function Home() {
             </div>
             <div className="container" style={{ maxWidth: '960px' }}>
               <h2 style={{ textAlign: 'center', margin: '0 0 1rem', fontFamily: 'var(--font-playfair), serif', fontSize: '2.5rem' }}>
-                Meet our Tech Lead
+                Gặp Tech Lead Của Chúng Tôi
               </h2>
               <p className={styles.aboutQuote}>
-                "We don't just write code. We digitize your business logic."
+                "Chúng tôi không chỉ viết code — chúng tôi số hóa cách doanh nghiệp bạn vận hành."
               </p>
               <div className={styles.aboutCard}>
                 <div className={styles.aboutImageWrapper}>
-                  <img src="/aboutus.png" alt="Tyler - Lead System Architect" className={styles.aboutImage} />
+                  <img src="/aboutus.png" alt="Tyler - Kiến Trúc Sư Hệ Thống" className={styles.aboutImage} />
                 </div>
                 <div className={styles.aboutContent}>
                   <h3>Tyler Tai Co</h3>
-                  <div className={styles.aboutRole}>Tech Lead / Team Leader</div>
+                  <div className={styles.aboutRole}>Tech Lead / Trưởng Nhóm</div>
                   <p>
-                    With 2+ years leading full-stack teams, I build complex digital ecosystems for diverse markets. Drawing on my experience with European partners, I guide my team to deliver systems that meet rigorous global standards—ensuring they are GDPR-compliant, DACH-ready, and hardwired for zero-latency performance.
+                    Hơn 2 năm dẫn dắt các đội full-stack, tôi xây dựng những hệ thống số phức tạp cho nhiều thị trường. Từ kinh nghiệm làm việc với đối tác châu Âu, đội ngũ của tôi tạo ra sản phẩm đạt chuẩn quốc tế — tuân thủ GDPR, sẵn sàng cho thị trường DACH và tối ưu hiệu năng.
                   </p>
                   <div style={{ marginTop: '2rem' }}>
                     <a href="https://www.linkedin.com/in/c%E1%BB%95-tr%E1%BB%8Bnh-hi%E1%BB%81n-t%C3%A0i-7b7762384/" className={styles.linkedinBtn}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
-                      Connect on LinkedIn
+                      Kết Nối Trên LinkedIn
                     </a>
                   </div>
                 </div>
@@ -197,27 +225,26 @@ export default function Home() {
             <div className="container">
               <div className={styles.ctaCard}>
                 <div className={styles.ctaContent}>
-                  <div className={styles.ctaBadge}>Available Worldwide</div>
-                  <h2>Book your 15-Min Discovery Call</h2>
-                  <p>See how a custom product configurator can transform your quoting process. Pick a time, and let's discuss your specific requirements.</p>
+                  <div className={styles.ctaBadge}>Phục Vụ Toàn Cầu</div>
+                  <h2>Đặt Lịch Tư Vấn 15 Phút</h2>
+                  <p>Xem giải pháp phần mềm phù hợp với bài toán của bạn. Chọn thời gian và trao đổi trực tiếp về nhu cầu cụ thể.</p>
                   <div className={styles.bookingSteps}>
                     <div className={styles.step}>
                       <span className={styles.stepNum}>1</span>
-                      <span>Select Time</span>
+                      <span>Chọn Thời Gian</span>
                     </div>
                     <div className={styles.step}>
                       <span className={styles.stepNum}>2</span>
-                      <span>Enter Details</span>
+                      <span>Nhập Thông Tin</span>
                     </div>
                     <div className={styles.step}>
                       <span className={styles.stepNum}>3</span>
-                      <span>Get Meet Link</span>
+                      <span>Nhận Link Họp</span>
                     </div>
                   </div>
                 </div>
 
                 <div className={styles.calendlyContainer}>
-                  {/* TODO: Replace with your real Calendly event URL */}
                   <CalendlyEmbed url="https://calendly.com/taicopgm/30min" />
                 </div>
               </div>
@@ -233,21 +260,21 @@ export default function Home() {
         <div className="container">
           <div className={styles.footerTop}>
             <div className={styles.footerBrand}>
-              <img src="/logo.png" alt="Agency Logo" style={{ height: '100px', width: '170px' }} />
-              <p className={styles.footerSlogan}>Digitize Your Business Logic.</p>
+              <img src="/logo.png" alt="Logo TicoSystem" style={{ height: '100px', width: '170px' }} />
+              <p className={styles.footerSlogan}>Số Hóa Logic Kinh Doanh Của Bạn.</p>
             </div>
             <nav className={styles.footerNav}>
-              <a href="#work">Work</a>
-              <a href="#demo">Live Demo</a>
-              <a href="#process">Process</a>
-              <a href="#expertise">Expertise</a>
-              <a href="#contact">Book a Call</a>
+              <a href="#work">Dự Án</a>
+              <a href="#demo">Demo Trực Tiếp</a>
+              <a href="#process">Quy Trình</a>
+              <a href="#expertise">Chuyên Môn</a>
+              <a href="#contact">Đặt Lịch</a>
             </nav>
           </div>
           <div className={styles.footerDivider} />
           <div className={styles.footerBottom}>
             <p className={styles.copyright}>
-              © {new Date().getFullYear()} Tech Consulting Agency. All rights reserved.
+              © {new Date().getFullYear()} Tech Consulting Agency. Bảo lưu mọi quyền.
             </p>
             <div className={styles.footerSocials}>
               <a href="mailto:taicopgm@gmail.com" title="Email">

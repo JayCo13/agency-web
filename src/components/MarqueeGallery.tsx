@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from '@/app/page.module.css';
 
 interface MarqueeItem {
-  img: number;
+  img: string | number;
   category: string;
   title: string;
 }

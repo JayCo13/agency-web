@@ -101,6 +101,58 @@
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
 }
 
+/* --- Language toggle --- */
+.langToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.langLink {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.langLink:hover {
+  color: var(--text-main);
+}
+
+.langActive {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.langSep {
+  color: rgba(15, 23, 42, 0.25);
+  font-size: 0.8rem;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Mobile-only language toggle shown inside the slide-down menu */
+.mobileLangToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 0;
+}
+
+@media (max-width: 768px) {
+  .langToggle {
+    display: none;
+  }
+}
+
 /* --- Hero Section --- */
 .hero {
   min-height: calc(100dvh - var(--nav-height));
