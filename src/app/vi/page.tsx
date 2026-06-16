@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description:
       'Chúng tôi xây dựng web app, hệ thống quản lý theo yêu cầu, chatbot AI và bot tự động hóa theo tiêu chuẩn châu Âu.',
     locale: 'vi_VN',
-    images: [{ url: '/logo.png', width: 620, height: 402, alt: 'TicoSystem' }],
+    images: [{ url: '/og.png', width: 1200, height: 633, alt: 'TicoSystem — Giải Pháp Công Nghệ Cho Doanh Nghiệp' }],
   },
 };
 

@@ -35,15 +35,14 @@ export const metadata: Metadata = {
     description:
       "We build web apps, custom business systems, AI chatbots and automation bots to European standards.",
     locale: "en_US",
-    // TODO: replace with a dedicated 1200x630 OG image — logo.png is a stopgap.
-    images: [{ url: "/logo.png", width: 620, height: 402, alt: "TicoSystem" }],
+    images: [{ url: "/og.png", width: 1200, height: 633, alt: "TicoSystem — Web Apps · Custom Systems · AI Automation" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Web Development, Custom Systems & AI Automation | TicoSystem",
     description:
       "We build web apps, custom business systems, AI chatbots and automation bots to European standards.",
-    images: ["/logo.png"],
+    images: ["/og.png"],
   },
   icons: {
     icon: "/browlogo.png",
