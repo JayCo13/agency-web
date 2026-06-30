@@ -1,0 +1,89 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import BlogShell from "@/components/blog/BlogShell";
+import PostArticle from "@/components/blog/PostArticle";
+import { getPostBySlug, getPublishedSlugs } from "@/lib/blog";
+
+export const revalidate = 300;
+
+const SITE = "https://ticosystem.com";
+
+export async function generateStaticParams() {
+  const slugs = await getPublishedSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug, "vi");
+  if (!post) return { title: "Không tìm thấy bài viết | TicoSystem" };
+
+  return {
+    title: `${post.title} | TicoSystem`,
+    description: post.excerpt,
+    alternates: {
+      canonical: `/vi/blog/${slug}`,
+      languages: {
+        en: `/blog/${slug}`,
+        vi: `/vi/blog/${slug}`,
+        "x-default": `/blog/${slug}`,
+      },
+    },
+    openGraph: {
+      type: "article",
+      url: `${SITE}/vi/blog/${slug}`,
+      title: post.title,
+      description: post.excerpt,
+      images: [post.coverImage ?? "/og.png"],
+      publishedTime: post.publishedAt ?? undefined,
+      locale: "vi_VN",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [post.coverImage ?? "/og.png"],
+    },
+  };
+}
+
+export default async function BlogPostVi({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug, "vi");
+  if (!post) notFound();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    image: post.coverImage ? `${SITE}${post.coverImage}` : `${SITE}/og.png`,
+    datePublished: post.publishedAt ?? undefined,
+    author: { "@type": "Person", name: post.author },
+    publisher: {
+      "@type": "Organization",
+      name: "TicoSystem",
+      logo: { "@type": "ImageObject", url: `${SITE}/logo.png` },
+    },
+    mainEntityOfPage: `${SITE}/vi/blog/${slug}`,
+    inLanguage: "vi",
+  };
+
+  return (
+    <BlogShell lang="vi" altHref={`/blog/${slug}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <PostArticle lang="vi" post={post} />
+    </BlogShell>
+  );
+}

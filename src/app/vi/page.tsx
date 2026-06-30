@@ -69,6 +69,7 @@ export default function HomeVi() {
             <a href="#demo" className={styles.navLink}>Demo Trực Tiếp</a>
             <a href="#process" className={styles.navLink}>Quy Trình</a>
             <a href="#expertise" className={styles.navLink}>Chuyên Môn</a>
+            <a href="/vi/blog" className={styles.navLink}>Blog</a>
           </nav>
           <div className={styles.headerActions}>
             <LanguageToggle current="vi" />
@@ -268,6 +269,7 @@ export default function HomeVi() {
               <a href="#demo">Demo Trực Tiếp</a>
               <a href="#process">Quy Trình</a>
               <a href="#expertise">Chuyên Môn</a>
+              <a href="/vi/blog">Blog</a>
               <a href="#contact">Đặt Lịch</a>
             </nav>
           </div>

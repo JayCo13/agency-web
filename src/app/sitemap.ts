@@ -1,35 +1,69 @@
 import type { MetadataRoute } from "next";
+import { getPublishedPosts } from "@/lib/blog";
 
 const BASE_URL = "https://ticosystem.com";
 
-// Only list pages that actually exist — submitting URLs that 404 hurts crawl
-// trust. Add the /services/*, /portfolio and /blog entries here the moment
-// those routes ship.
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+// Revalidate the sitemap on the same cadence as the blog so newly published
+// posts get picked up without a full rebuild.
+export const revalidate = 300;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const now = new Date();
+
+  const staticEntries: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
       alternates: {
-        languages: {
-          en: BASE_URL,
-          vi: `${BASE_URL}/vi`,
-        },
+        languages: { en: BASE_URL, vi: `${BASE_URL}/vi` },
       },
     },
     {
       url: `${BASE_URL}/vi`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
       alternates: {
-        languages: {
-          en: BASE_URL,
-          vi: `${BASE_URL}/vi`,
-        },
+        languages: { en: BASE_URL, vi: `${BASE_URL}/vi` },
+      },
+    },
+    {
+      url: `${BASE_URL}/blog`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.8,
+      alternates: {
+        languages: { en: `${BASE_URL}/blog`, vi: `${BASE_URL}/vi/blog` },
+      },
+    },
+    {
+      url: `${BASE_URL}/vi/blog`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.7,
+      alternates: {
+        languages: { en: `${BASE_URL}/blog`, vi: `${BASE_URL}/vi/blog` },
       },
     },
   ];
+
+  // One sitemap entry per published post, with EN/VI alternates so Google
+  // understands the two language versions are the same article.
+  const posts = await getPublishedPosts("en");
+  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+    alternates: {
+      languages: {
+        en: `${BASE_URL}/blog/${post.slug}`,
+        vi: `${BASE_URL}/vi/blog/${post.slug}`,
+      },
+    },
+  }));
+
+  return [...staticEntries, ...postEntries];
 }

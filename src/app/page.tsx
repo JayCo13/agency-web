@@ -41,6 +41,7 @@ export default function Home() {
             <a href="#demo" className={styles.navLink}>Live Demo</a>
             <a href="#process" className={styles.navLink}>Process</a>
             <a href="#expertise" className={styles.navLink}>Expertise</a>
+            <a href="/blog" className={styles.navLink}>Blog</a>
           </nav>
           <div className={styles.headerActions}>
             <LanguageToggle current="en" />
@@ -241,6 +242,7 @@ export default function Home() {
               <a href="#demo">Live Demo</a>
               <a href="#process">Process</a>
               <a href="#expertise">Expertise</a>
+              <a href="/blog">Blog</a>
               <a href="#contact">Book a Call</a>
             </nav>
           </div>
