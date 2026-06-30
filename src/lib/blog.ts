@@ -48,20 +48,30 @@ let warned = false;
 function getClient(): SupabaseClient | null {
   if (client) return client;
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
 
-  if (!url || !anonKey) {
+  // A missing OR malformed URL must never crash the build — the public site
+  // should still deploy and just render an empty blog. (A wrong value pasted
+  // into the Netlify env is the classic cause; createClient throws on it.)
+  const validUrl = !!url && /^https?:\/\//i.test(url);
+
+  if (!validUrl || !anonKey) {
     if (!warned) {
       console.warn(
-        "[blog] NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY not set — blog will be empty.",
+        "[blog] Supabase env missing or invalid (NEXT_PUBLIC_SUPABASE_URL must be a https URL) — blog will be empty.",
       );
       warned = true;
     }
     return null;
   }
 
-  client = createClient(url, anonKey, { auth: { persistSession: false } });
+  try {
+    client = createClient(url!, anonKey, { auth: { persistSession: false } });
+  } catch (err) {
+    console.error("[blog] failed to init Supabase client:", err);
+    return null;
+  }
   return client;
 }
 
