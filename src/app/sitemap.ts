@@ -5,7 +5,7 @@ const BASE_URL = "https://ticosystem.com";
 
 // Revalidate the sitemap on the same cadence as the blog so newly published
 // posts get picked up without a full rebuild.
-export const revalidate = 300;
+export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();

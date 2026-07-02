@@ -46,6 +46,13 @@ create index if not exists tico_blog_posts_published_idx
   on public.tico_blog_posts (published_at desc)
   where status = 'published';
 
+-- Public storage bucket for blog images (cover + inline). Uploads go through
+-- the local admin using the service role (which bypasses RLS); a public bucket
+-- means the resulting URLs are readable by anyone. Safe to run repeatedly.
+insert into storage.buckets (id, name, public)
+values ('blog-images', 'blog-images', true)
+on conflict (id) do nothing;
+
 -- Row Level Security: the public (anon key) may ONLY read published posts.
 -- Inserts/updates happen through the Supabase dashboard or the service role,
 -- which bypasses RLS, so we deliberately add no write policy here.

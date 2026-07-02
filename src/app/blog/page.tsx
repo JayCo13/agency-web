@@ -3,9 +3,9 @@ import BlogShell from "@/components/blog/BlogShell";
 import BlogList from "@/components/blog/BlogList";
 import { getPublishedPosts } from "@/lib/blog";
 
-// Regenerate the list at most every 5 minutes so new posts appear without a
+// Regenerate the list at most once a minute so new posts appear without a
 // rebuild, while still serving a cached (fast, crawlable) page.
-export const revalidate = 300;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog — Web Development, Custom Systems & AI Automation | TicoSystem",

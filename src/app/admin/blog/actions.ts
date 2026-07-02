@@ -6,6 +6,7 @@ import {
   adminCreatePost,
   adminUpdatePost,
   adminDeletePost,
+  adminUploadImage,
   assertAdminEnabled,
   type PostInput,
 } from "@/lib/supabaseAdmin";
@@ -75,6 +76,24 @@ export async function savePost(form: FormData): Promise<void> {
   revalidatePath("/admin/blog");
 
   redirect("/admin/blog");
+}
+
+export async function uploadImage(form: FormData): Promise<{ url: string }> {
+  assertAdminEnabled();
+
+  const file = form.get("file");
+  if (!(file instanceof File) || file.size === 0) {
+    throw new Error("No file provided.");
+  }
+  if (!file.type.startsWith("image/")) {
+    throw new Error("Only image files are allowed.");
+  }
+  if (file.size > 10 * 1024 * 1024) {
+    throw new Error("Image is larger than 10MB.");
+  }
+
+  const url = await adminUploadImage(file);
+  return { url };
 }
 
 export async function deletePost(form: FormData): Promise<void> {

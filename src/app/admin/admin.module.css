@@ -358,6 +358,52 @@
   font-weight: 700;
 }
 
+.coverRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.uploadBtn {
+  background: #0f172a;
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.uploadBtn:hover {
+  background: #1e293b;
+}
+
+.uploadBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.clearBtn {
+  background: none;
+  color: #b91c1c;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.uploadError {
+  color: #b91c1c;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.coverPreview {
+  margin-top: 0.75rem;
+  max-width: 320px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
 .formActions {
   display: flex;
   align-items: center;

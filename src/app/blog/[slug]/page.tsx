@@ -4,7 +4,7 @@ import BlogShell from "@/components/blog/BlogShell";
 import PostArticle from "@/components/blog/PostArticle";
 import { getPostBySlug, getPublishedSlugs } from "@/lib/blog";
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 const SITE = "https://ticosystem.com";
 

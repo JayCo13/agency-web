@@ -3,7 +3,7 @@ import BlogShell from "@/components/blog/BlogShell";
 import BlogList from "@/components/blog/BlogList";
 import { getPublishedPosts } from "@/lib/blog";
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog — Phát triển Web, Hệ thống & Tự động hóa AI | TicoSystem",

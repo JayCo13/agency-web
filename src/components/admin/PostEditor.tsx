@@ -1,13 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import styles from "@/app/admin/admin.module.css";
-import { savePost } from "@/app/admin/blog/actions";
+import { savePost, uploadImage } from "@/app/admin/blog/actions";
 import type { AdminPostRow } from "@/lib/supabaseAdmin";
 
 type Mode = "write" | "preview";
+
+/** Upload a File through the server action, returning its public URL. */
+async function upload(file: File): Promise<string> {
+  const form = new FormData();
+  form.append("file", file);
+  const { url } = await uploadImage(form);
+  return url;
+}
 
 function ContentField({
   lang,
@@ -20,6 +28,27 @@ function ContentField({
 }) {
   const [value, setValue] = useState(initial);
   const [mode, setMode] = useState<Mode>("write");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  async function onPick(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const url = await upload(file);
+      // Append the image as Markdown so it renders inside the article.
+      const snippet = `\n\n![${file.name.replace(/\.[^.]+$/, "")}](${url})\n`;
+      setValue((v) => v + snippet);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed.");
+    } finally {
+      setBusy(false);
+      if (fileRef.current) fileRef.current.value = "";
+    }
+  }
 
   return (
     <div className={styles.field}>
@@ -38,9 +67,23 @@ function ContentField({
         >
           Preview
         </button>
+        <button
+          type="button"
+          className={styles.tab}
+          onClick={() => fileRef.current?.click()}
+          disabled={busy}
+        >
+          {busy ? "Uploading…" : "🖼 Insert image"}
+        </button>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          hidden
+          onChange={onPick}
+        />
       </div>
-      {/* Always keep the textarea in the DOM (hidden on preview) so its value is
-          submitted with the form regardless of the active tab. */}
+      {error && <span className={styles.uploadError}>{error}</span>}
       <textarea
         name={name}
         rows={18}
@@ -55,6 +98,73 @@ function ContentField({
             {value || "_Nothing to preview yet._"}
           </ReactMarkdown>
         </div>
+      )}
+    </div>
+  );
+}
+
+function CoverUploader({ initial }: { initial: string }) {
+  const [url, setUrl] = useState(initial);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  async function onPick(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setBusy(true);
+    setError(null);
+    try {
+      setUrl(await upload(file));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed.");
+    } finally {
+      setBusy(false);
+      if (fileRef.current) fileRef.current.value = "";
+    }
+  }
+
+  return (
+    <div className={styles.field}>
+      <label>Cover image</label>
+      {/* Submitted with the form; upload replaces the value, but it stays a
+          plain text field so you can also paste a URL by hand. */}
+      <input
+        name="cover_image"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+        placeholder="Upload a file, or paste an image URL"
+      />
+      <div className={styles.coverRow}>
+        <button
+          type="button"
+          className={styles.uploadBtn}
+          onClick={() => fileRef.current?.click()}
+          disabled={busy}
+        >
+          {busy ? "Uploading…" : "⬆ Upload from device"}
+        </button>
+        {url && (
+          <button
+            type="button"
+            className={styles.clearBtn}
+            onClick={() => setUrl("")}
+          >
+            Remove
+          </button>
+        )}
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          hidden
+          onChange={onPick}
+        />
+      </div>
+      {error && <span className={styles.uploadError}>{error}</span>}
+      {url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={url} alt="cover preview" className={styles.coverPreview} />
       )}
     </div>
   );
@@ -121,15 +231,9 @@ export default function PostEditor({ post }: { post?: AdminPostRow }) {
               placeholder="web development, pricing"
             />
           </div>
-          <div className={styles.field}>
-            <label htmlFor="cover_image">Cover image URL</label>
-            <input
-              id="cover_image"
-              name="cover_image"
-              defaultValue={post?.cover_image ?? ""}
-              placeholder="/blog/my-cover.png or https://..."
-            />
-          </div>
+        </div>
+        <div style={{ marginTop: "1rem" }}>
+          <CoverUploader initial={post?.cover_image ?? ""} />
         </div>
       </div>
 

@@ -124,3 +124,31 @@ export async function adminDeletePost(id: string): Promise<void> {
   const { error } = await getAdminClient().from(TABLE).delete().eq("id", id);
   if (error) throw new Error(error.message);
 }
+
+const IMAGE_BUCKET = "blog-images";
+
+/** Upload an image to Supabase Storage and return its public URL. */
+export async function adminUploadImage(file: File): Promise<string> {
+  const client = getAdminClient();
+
+  const ext = (file.name.split(".").pop() || "png").toLowerCase();
+  const base = file.name
+    .replace(/\.[^.]+$/, "")
+    .replace(/[^a-z0-9]+/gi, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase()
+    .slice(0, 40) || "image";
+  const path = `${Date.now()}-${base}.${ext}`;
+
+  const bytes = await file.arrayBuffer();
+  const { error } = await client.storage
+    .from(IMAGE_BUCKET)
+    .upload(path, bytes, {
+      contentType: file.type || "image/png",
+      upsert: false,
+    });
+  if (error) throw new Error(error.message);
+
+  const { data } = client.storage.from(IMAGE_BUCKET).getPublicUrl(path);
+  return data.publicUrl;
+}
