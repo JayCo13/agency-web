@@ -75,63 +75,63 @@ values (
   'published',
   now(),
   array['web development', 'pricing'],
-  'How Much Does a Custom Web App Cost in 2026?',
+  'The Cost of Building a Custom Web App in 2026',
   'Our actual starting prices for web apps, custom systems and AI bots — plus exactly what moves a project up or down the range.',
-  $md$Most agencies dodge this question. We won't — here are our actual starting prices.
+  $md$Most tech agencies dodge this question. We don't — here are our actual starting prices for 2026.
 
 ## Our pricing, in plain numbers
 
 | What you need | Typical investment |
 | --- | --- |
-| Landing page / marketing site | from $800 |
-| Small web app or business tool | $3,000 – $7,000 |
-| Custom system or platform | from $10,000 |
-| AI chatbot or automation bot | $1,500 – $4,000 |
+| Landing page / Marketing site | from $800 |
+| Small web app / Business tool / SaaS MVP | $3,000 – $7,000 |
+| Custom system or Core platform | from $10,000 |
+| AI chatbot / Automation agent | $1,500 – $4,000 |
 
-These are real starting ranges, not "contact us for a quote." Where you land inside a range comes down to three things.
+These are real starting ranges, not a "contact us for a quote" bait. Where you land inside a range comes down to three specific things.
 
-## What moves the price
+## What moves the price?
 
-- **Scope** — the number of distinct screens and user roles. Two roles and five screens cost far less than ten roles and forty screens.
-- **Integrations** — every external system (CRM, ERP, payment gateway) you connect adds engineering and testing time.
-- **Edge cases** — the rare-but-real situations your business logic must handle correctly. This is where "simple" projects quietly grow.
+- **Scope** — the number of distinct screens and user roles. A system with two roles and five screens costs far less than a multi-tenant platform with forty screens.
+- **Integrations** — every external system (CRM, ERP, payment gateways, AI APIs) you connect adds engineering and security testing time.
+- **Edge cases** — the rare-but-real situations your business logic must handle flawlessly. This is exactly where "simple" projects quietly grow in complexity.
 
 ## A worked example
 
-Say you need a quoting tool for your sales team: a configurator with about 6 screens, one admin role, and a single CRM integration. That sits squarely in the **$3,000 – $7,000** small-app band — closer to the lower end if your pricing rules are clean, higher if they're full of exceptions.
+Say you need a visual product configurator for your sales team: about 6-8 screens, an admin dashboard, and a single CRM integration. That sits squarely in the **$3,000 – $7,000** small-app band — closer to the lower end if your pricing rules are clean, and higher if they're full of custom exceptions.
 
-> We don't just write code. We digitize your business logic.
+> We don't just write code. We digitize your business logic using modern stacks.
 
-Want an exact number for your project? [Book a free 15-minute call](/#contact) and we'll scope it with you on the spot.
+Want an exact number for your project? [Book a free 15-minute call](/#contact) and we'll scope it out with you on the spot.
 $md$,
-  'Chi phí làm web app riêng năm 2026 là bao nhiêu?',
+  'Chi phí xây dựng Web App tùy chỉnh năm 2026',
   'Bảng giá khởi điểm thật cho web app, hệ thống tùy chỉnh và bot AI — kèm đúng những yếu tố khiến dự án đắt hay rẻ hơn.',
-  $md$Hầu hết agency đều né câu hỏi này. Chúng tôi thì không — đây là mức giá khởi điểm thật của chúng tôi.
+  $md$Hầu hết các agency công nghệ đều né tránh câu hỏi này. TicoSystem thì không — dưới đây là các mức giá khởi điểm thực tế của chúng tôi trong năm 2026.
 
 ## Bảng giá, nói thẳng bằng con số
 
 | Bạn cần gì | Mức đầu tư phổ biến |
 | --- | --- |
-| Landing / web giới thiệu | từ $800 |
-| Web app / công cụ nghiệp vụ nhỏ | $3.000 – $7.000 |
-| Hệ thống tùy chỉnh / nền tảng | từ $10.000 |
-| Chatbot AI / bot tự động hóa | $1.500 – $4.000 |
+| Landing page / Web giới thiệu | từ 5.000.000 VNĐ |
+| Web app / Công cụ nghiệp vụ / SaaS MVP | 20.000.000 - 40.000.000 VNĐ |
+| Hệ thống tùy chỉnh / Nền tảng lõi | từ 60.000.000 VNĐ |
+| Chatbot AI / Trợ lý ảo tự động hóa | 15.000.000 – 30.000.000 VNĐ |
 
-Đây là khoảng giá khởi điểm thật, không phải kiểu "liên hệ để báo giá". Bạn nằm ở đâu trong khoảng đó phụ thuộc vào ba yếu tố.
+Đây là khoảng giá khởi điểm thật, không phải mồi nhử "liên hệ để báo giá". Việc dự án của bạn nằm ở đâu trong khoảng đó phụ thuộc vào ba yếu tố chính.
 
-## Điều gì làm giá tăng hay giảm
+## Điều gì làm giá tăng hay giảm?
 
-- **Phạm vi** — số màn hình và phân quyền người dùng. Hai vai trò với năm màn hình rẻ hơn nhiều so với mười vai trò và bốn mươi màn hình.
-- **Tích hợp** — mỗi hệ thống bên ngoài (CRM, ERP, cổng thanh toán) cần kết nối đều thêm thời gian phát triển và kiểm thử.
-- **Tình huống phức tạp** — những trường hợp ít gặp nhưng có thật mà phần mềm buộc phải xử lý đúng. Đây chính là chỗ khiến dự án "đơn giản" âm thầm phình to.
+- **Quy mô (Scope)** — số lượng màn hình và phân quyền người dùng. Một hệ thống với hai vai trò quản lý sẽ tối ưu chi phí hơn rất nhiều so với một nền tảng đa tầng phức tạp với hàng chục màn hình.
+- **Tích hợp (Integrations)** — mọi kết nối với hệ thống bên ngoài (CRM, ERP, cổng thanh toán, AI API) đều đòi hỏi thêm thời gian phát triển và kiểm thử bảo mật nghiêm ngặt.
+- **Logic đặc thù (Edge cases)** — những tình huống nghiệp vụ hiếm gặp nhưng bắt buộc phần mềm phải xử lý chuẩn xác. Đây chính là yếu tố cốt lõi khiến các dự án tưởng chừng "đơn giản" lại âm thầm phình to.
 
 ## Một ví dụ tính giá thật
 
-Giả sử bạn cần công cụ báo giá cho đội sales: một configurator khoảng 6 màn hình, một vai trò quản trị, và một tích hợp CRM. Nó nằm gọn trong nhóm app nhỏ **$3.000 – $7.000** — gần mức thấp nếu quy tắc tính giá gọn gàng, cao hơn nếu nhiều ngoại lệ.
+Giả sử bạn cần một công cụ cấu hình sản phẩm trực quan (visual configurator) cho đội ngũ sales: khoảng 6-8 màn hình, một vai trò quản trị viên, và tích hợp trực tiếp với hệ thống CRM. Dự án này sẽ nằm gọn trong nhóm web app nhỏ **20.000.000 - 40.000.000 VNĐ** — tiến về mức thấp nếu bộ quy tắc tính giá của bạn gọn gàng, và sẽ cao hơn nếu có quá nhiều tùy biến ngoại lệ.
 
-> Chúng tôi không chỉ viết code. Chúng tôi số hóa logic vận hành của doanh nghiệp bạn.
+> Chúng tôi không chỉ gõ code. Chúng tôi số hóa logic vận hành của doanh nghiệp bạn bằng những công nghệ hiện đại nhất.
 
-Muốn một con số chính xác cho dự án của mình? [Đặt lịch tư vấn miễn phí 15 phút](/vi#contact) — chúng tôi sẽ ước lượng ngay tại chỗ cùng bạn.
+Bạn muốn một con số chính xác cho dự án của mình? [Đặt lịch tư vấn miễn phí 15 phút](/vi#contact) — chúng ta sẽ cùng nhau bóc tách và ước lượng ngay tại chỗ.
 $md$
 )
 on conflict (slug) do nothing;
