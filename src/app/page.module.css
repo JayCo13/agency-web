@@ -1582,6 +1582,18 @@
     margin-bottom: 2rem;
   }
 
+  .heroActions {
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .heroActions .btn {
+    flex: 1 1 auto;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
   .marqueeItem {
     width: 85vw;
     /* Scale scrolling images to fit mobile nicely */

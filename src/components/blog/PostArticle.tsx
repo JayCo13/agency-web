@@ -46,7 +46,7 @@ export default function PostArticle({
   const t = T[lang];
 
   return (
-    <article className={`container ${styles.article}`}>
+    <article className={styles.article}>
       <a href={t.base} className={styles.backLink}>
         {t.back}
       </a>

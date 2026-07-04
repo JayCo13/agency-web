@@ -94,6 +94,13 @@ p {
   padding: 0 2rem;
 }
 
+/* Tighter side padding on small phones so content gets more usable width. */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
 .section {
   padding: 6rem 0;
 }

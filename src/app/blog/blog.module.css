@@ -32,7 +32,7 @@
 }
 
 .logo img {
-  height: 64px;
+  height: 76px;
   width: auto;
 }
 
@@ -93,6 +93,9 @@
 
 .main {
   flex: 1;
+  /* Flex items default to min-width:auto, which lets wide children (e.g. the
+     pricing table) blow the column past the viewport. Allow it to shrink. */
+  min-width: 0;
 }
 
 /* --- List page --- */
@@ -114,7 +117,9 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  /* min(300px, 100%) keeps a card from ever forcing horizontal scroll on
+     phones narrower than the min track width. */
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: 2rem;
   padding-bottom: 5rem;
 }
@@ -195,9 +200,12 @@
 
 /* --- Article page --- */
 .article {
-  max-width: 760px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 3rem 0 5rem;
+  /* Own the horizontal padding here instead of relying on the global
+     .container class (whose padding was being overridden by this shorthand,
+     leaving content edge-to-edge on some builds). */
+  padding: 3rem 2rem 5rem;
 }
 
 .backLink {
@@ -377,7 +385,7 @@
 }
 
 .footerInner img {
-  height: 70px;
+  height: 92px;
   width: auto;
 }
 
@@ -387,13 +395,83 @@
 }
 
 @media (max-width: 768px) {
+  .blogLabel {
+    display: none;
+  }
+  .headerActions {
+    gap: 0.75rem;
+  }
+  .logo img {
+    height: 58px;
+  }
+  .ctaBtn {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .listHero {
+    padding: 2.5rem 0 1.5rem;
+  }
   .listHero h1 {
     font-size: 2.25rem;
+  }
+  .listHero p {
+    font-size: 1rem;
+  }
+  .grid {
+    gap: 1.25rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .article {
+    padding: 2rem 1.25rem 3.5rem;
   }
   .articleHead h1 {
     font-size: 2rem;
   }
-  .blogLabel {
-    display: none;
+  .prose {
+    font-size: 1rem;
+  }
+  .prose h2 {
+    font-size: 1.5rem;
+  }
+  /* Let a wide table scroll horizontally inside its own box instead of
+     stretching the whole page. */
+  .prose table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.9rem;
+  }
+  .prose th,
+  .prose td {
+    padding: 0.6rem 0.7rem;
+  }
+  .articleCta {
+    padding: 1.75rem 1.25rem;
+  }
+
+  /* Stack + center the footer on mobile instead of pushing logo and copyright
+     to opposite edges. */
+  .footerInner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo img {
+    height: 50px;
+  }
+  .ctaBtn {
+    padding: 0.45rem 0.7rem;
+  }
+  .listHero h1 {
+    font-size: 1.9rem;
+  }
+  .articleHead h1 {
+    font-size: 1.7rem;
   }
 }
