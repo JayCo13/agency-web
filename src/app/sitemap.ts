@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getPublishedPosts } from "@/lib/blog";
+import { allServiceSlugs } from "@/lib/services";
 
 const BASE_URL = "https://ticosystem.com";
 
@@ -49,6 +50,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // Service landing pages (EN + VI alternates).
+  const serviceEntries: MetadataRoute.Sitemap = allServiceSlugs().map((slug) => ({
+    url: `${BASE_URL}/services/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.8,
+    alternates: {
+      languages: {
+        en: `${BASE_URL}/services/${slug}`,
+        vi: `${BASE_URL}/vi/services/${slug}`,
+      },
+    },
+  }));
+
   // One sitemap entry per published post, with EN/VI alternates so Google
   // understands the two language versions are the same article.
   const posts = await getPublishedPosts("en");
@@ -65,5 +80,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   }));
 
-  return [...staticEntries, ...postEntries];
+  return [...staticEntries, ...serviceEntries, ...postEntries];
 }

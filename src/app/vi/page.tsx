@@ -1,15 +1,15 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import styles from '../page.module.css';
-import ProductDemo from '@/components/ProductDemo';
+import ServicesSection from '@/components/ServicesSection';
+import Lightfall from '@/components/Lightfall';
 import CalendlyEmbed from '@/components/CalendlyEmbed';
-import HeroBackground3D from '@/components/HeroBackground3D';
-import PixelBlast from '@/components/PixelBlastWrapper';
 import ScrollToTop from '@/components/ScrollToTop';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import MarqueeGallery from '@/components/MarqueeGallery';
 import MobileNav from '@/components/MobileNav';
 import LanguageToggle from '@/components/LanguageToggle';
+import ScrollHeader from '@/components/ScrollHeader';
 
 // NOTE: This mirrors src/app/page.tsx with Vietnamese copy. The marquee
 // project names keep their original text.
@@ -58,6 +58,7 @@ const marqueeContent = [
 export default function HomeVi() {
   return (
     <div className={styles.pageWrapper}>
+      <ScrollHeader scrolledClass={styles.headerScrolled} />
       {/* Header */}
       <header className={styles.header}>
         <div className={`container`} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
@@ -66,7 +67,7 @@ export default function HomeVi() {
           </div>
           <nav className={styles.navLinks}>
             <a href="#work" className={styles.navLink}>Dự Án</a>
-            <a href="#demo" className={styles.navLink}>Demo Trực Tiếp</a>
+            <a href="#services" className={styles.navLink}>Dịch Vụ</a>
             <a href="#process" className={styles.navLink}>Quy Trình</a>
             <a href="#expertise" className={styles.navLink}>Chuyên Môn</a>
             <a href="/vi/blog" className={styles.navLink}>Blog</a>
@@ -84,15 +85,28 @@ export default function HomeVi() {
       <main>
         {/* Hero Section */}
         <section className={styles.hero}>
-          <div className={styles.heroBackground}></div>
-          <HeroBackground3D />
+          <div className={styles.heroCanvas}>
+            <Lightfall
+              colors={['#059669', '#0891B2', '#2563EB']}
+              backgroundColor="#FFFFFF"
+              speed={1}
+              streakCount={3}
+              density={0.4}
+              zoom={2}
+              glow={0.75}
+              backgroundGlow={0}
+              twinkle={1}
+              opacity={0.9}
+              mouseInteraction={false}
+            />
+          </div>
           <div className={`container ${styles.heroContent} fade-in`}>
             <h1><em>Giải Pháp</em> Công Nghệ<br />Cho Doanh Nghiệp Của Bạn</h1>
             <p className={styles.heroSubtitle}>
               Web, hệ thống quản lý và tự động hóa AI theo yêu cầu.
             </p>
             <div className={styles.heroActions}>
-              <a href="#demo" className="btn btn-primary">Bắt Đầu Ngay</a>
+              <a href="#services" className="btn btn-primary">Bắt Đầu Ngay</a>
               <a href="#process" className="btn btn-secondary">Quy Trình Của Chúng Tôi</a>
             </div>
           </div>
@@ -103,9 +117,9 @@ export default function HomeVi() {
           <MarqueeGallery items={marqueeContent} />
         </RevealOnScroll>
 
-        {/* Product Demo Section (Critical) */}
+        {/* Services Section */}
         <RevealOnScroll>
-          <ProductDemo lang="vi" />
+          <ServicesSection lang="vi" />
         </RevealOnScroll>
 
         {/* How It Works Section */}
@@ -186,9 +200,6 @@ export default function HomeVi() {
         {/* Meet our Tech Lead Section */}
         <RevealOnScroll>
           <section id="about" className={`section ${styles.aboutSection}`}>
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-              <PixelBlast variant="square" pixelSize={2} color="#94A3B8" transparent={true} />
-            </div>
             <div className="container" style={{ maxWidth: '960px' }}>
               <h2 style={{ textAlign: 'center', margin: '0 0 1rem', fontFamily: 'var(--font-playfair), serif', fontSize: '2.5rem' }}>
                 Gặp Tech Lead Của Chúng Tôi
@@ -266,7 +277,7 @@ export default function HomeVi() {
             </div>
             <nav className={styles.footerNav}>
               <a href="#work">Dự Án</a>
-              <a href="#demo">Demo Trực Tiếp</a>
+              <a href="#services">Dịch Vụ</a>
               <a href="#process">Quy Trình</a>
               <a href="#expertise">Chuyên Môn</a>
               <a href="/vi/blog">Blog</a>

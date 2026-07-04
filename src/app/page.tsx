@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './page.module.css';
-import ProductDemo from '@/components/ProductDemo';
+import ServicesSection from '@/components/ServicesSection';
+import Lightfall from '@/components/Lightfall';
 import CalendlyEmbed from '@/components/CalendlyEmbed';
-import HeroBackground3D from '@/components/HeroBackground3D';
-import PixelBlast from '@/components/PixelBlastWrapper';
 import ScrollToTop from '@/components/ScrollToTop';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import MarqueeGallery from '@/components/MarqueeGallery';
 import MobileNav from '@/components/MobileNav';
 import LanguageToggle from '@/components/LanguageToggle';
+import ScrollHeader from '@/components/ScrollHeader';
 
 const marqueeContent = [
   { img: 1, category: "thiieltstrenmay.com - IELTS Practice Platform", title: "Ielts Practice System" },
@@ -30,6 +30,7 @@ const marqueeContent = [
 export default function Home() {
   return (
     <div className={styles.pageWrapper}>
+      <ScrollHeader scrolledClass={styles.headerScrolled} />
       {/* Header */}
       <header className={styles.header}>
         <div className={`container`} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
@@ -38,7 +39,7 @@ export default function Home() {
           </div>
           <nav className={styles.navLinks}>
             <a href="#work" className={styles.navLink}>Work</a>
-            <a href="#demo" className={styles.navLink}>Live Demo</a>
+            <a href="#services" className={styles.navLink}>Services</a>
             <a href="#process" className={styles.navLink}>Process</a>
             <a href="#expertise" className={styles.navLink}>Expertise</a>
             <a href="/blog" className={styles.navLink}>Blog</a>
@@ -56,15 +57,28 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <section className={styles.hero}>
-          <div className={styles.heroBackground}></div>
-          <HeroBackground3D />
+          <div className={styles.heroCanvas}>
+            <Lightfall
+              colors={['#059669', '#0891B2', '#2563EB']}
+              backgroundColor="#FFFFFF"
+              speed={1}
+              streakCount={3}
+              density={0.4}
+              zoom={2}
+              glow={0.75}
+              backgroundGlow={0}
+              twinkle={1}
+              opacity={0.9}
+              mouseInteraction={false}
+            />
+          </div>
           <div className={`container ${styles.heroContent} fade-in`}>
             <h1>We <em>Build</em> Web Apps, Systems &amp; AI Automation<br />That Run Your Business.</h1>
             <p className={styles.heroSubtitle}>
               Custom web applications, business management systems, AI chatbots and automation bots — engineered to European standards.
             </p>
             <div className={styles.heroActions}>
-              <a href="#demo" className="btn btn-primary">Get Started</a>
+              <a href="#services" className="btn btn-primary">Get Started</a>
               <a href="#process" className="btn btn-secondary">Our Process</a>
             </div>
           </div>
@@ -75,9 +89,9 @@ export default function Home() {
           <MarqueeGallery items={marqueeContent} />
         </RevealOnScroll>
 
-        {/* Product Demo Section (Critical) */}
+        {/* Services Section */}
         <RevealOnScroll>
-          <ProductDemo />
+          <ServicesSection lang="en" />
         </RevealOnScroll>
 
         {/* How It Works Section */}
@@ -158,9 +172,6 @@ export default function Home() {
         {/* Meet our Tech Lead Section */}
         <RevealOnScroll>
           <section id="about" className={`section ${styles.aboutSection}`}>
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-              <PixelBlast variant="square" pixelSize={2} color="#94A3B8" transparent={true} />
-            </div>
             <div className="container" style={{ maxWidth: '960px' }}>
               <h2 style={{ textAlign: 'center', margin: '0 0 1rem', fontFamily: 'var(--font-playfair), serif', fontSize: '2.5rem' }}>
                 Meet our Tech Lead
@@ -239,7 +250,7 @@ export default function Home() {
             </div>
             <nav className={styles.footerNav}>
               <a href="#work">Work</a>
-              <a href="#demo">Live Demo</a>
+              <a href="#services">Services</a>
               <a href="#process">Process</a>
               <a href="#expertise">Expertise</a>
               <a href="/blog">Blog</a>

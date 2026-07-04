@@ -5,7 +5,7 @@ import styles from '@/app/page.module.css';
 const NAV = {
   en: {
     work: 'Work',
-    demo: 'Live Demo',
+    demo: 'Services',
     process: 'Process',
     expertise: 'Expertise',
     blog: 'Blog',
@@ -13,7 +13,7 @@ const NAV = {
   },
   vi: {
     work: 'Dự Án',
-    demo: 'Demo Trực Tiếp',
+    demo: 'Dịch Vụ',
     process: 'Quy Trình',
     expertise: 'Chuyên Môn',
     blog: 'Blog',
@@ -47,7 +47,7 @@ export default function MobileNav({ lang = 'en' }: { lang?: 'en' | 'vi' }) {
       {isOpen && (
         <div className={styles.mobileMenu}>
           <a href="#work" onClick={() => setIsOpen(false)}>{t.work}</a>
-          <a href="#demo" onClick={() => setIsOpen(false)}>{t.demo}</a>
+          <a href="#services" onClick={() => setIsOpen(false)}>{t.demo}</a>
           <a href="#process" onClick={() => setIsOpen(false)}>{t.process}</a>
           <a href="#expertise" onClick={() => setIsOpen(false)}>{t.expertise}</a>
           <a href={blogHref} onClick={() => setIsOpen(false)}>{t.blog}</a>
