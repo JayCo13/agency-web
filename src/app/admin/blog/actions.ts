@@ -20,13 +20,28 @@ function nullable(form: FormData, key: string): string | null {
   return v === "" ? null : v;
 }
 
+/**
+ * The editor's `datetime-local` field sends `YYYY-MM-DDTHH:mm` with no zone,
+ * which `new Date()` reads as the admin machine's local time — exactly what
+ * whoever typed it meant. Anything unparseable is rejected rather than silently
+ * wiping the existing date.
+ */
+function parsePublishedAt(raw: string | null): string | null {
+  if (!raw) return null;
+  const d = new Date(raw);
+  if (Number.isNaN(d.getTime())) {
+    throw new Error(`Invalid publish date: "${raw}"`);
+  }
+  return d.toISOString();
+}
+
 /** Build a PostInput from the editor form. */
 function readForm(form: FormData): PostInput {
   const status = str(form, "status") === "published" ? "published" : "draft";
-  const existingPublishedAt = nullable(form, "published_at");
 
-  // Stamp a publish date the first time a post goes live; keep it afterwards.
-  let publishedAt = existingPublishedAt;
+  // The date is editable, so posts can be written in a batch and then spaced
+  // out over past dates. Empty + published means "stamp it now".
+  let publishedAt = parsePublishedAt(nullable(form, "published_at"));
   if (status === "published" && !publishedAt) {
     publishedAt = new Date().toISOString();
   }

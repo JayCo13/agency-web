@@ -2,6 +2,7 @@ import React from "react";
 import shell from "@/app/blog/blog.module.css";
 import styles from "./ServicePage.module.css";
 import { SERVICES, type Service, type Lang } from "@/lib/services";
+import SiteFooter from "@/components/home/SiteFooter";
 
 const SITE = "https://ticosystem.com";
 
@@ -30,7 +31,7 @@ export default function ServicePage({ lang, service }: { lang: Lang; service: Se
     "@type": "Service",
     name: c.name,
     description: c.metaDescription,
-    provider: { "@type": "Organization", name: "TicoSystem", url: SITE },
+    provider: { "@type": "Organization", name: "TicoSystem", legalName: "Công ty TNHH Giải pháp Công nghệ và Phần mềm TC", url: SITE },
     areaServed: ["Worldwide", "Vietnam", "DACH"],
     url: `${SITE}${t.base}/${service.slug}`,
   };
@@ -43,7 +44,7 @@ export default function ServicePage({ lang, service }: { lang: Lang; service: Se
       <header className={shell.header}>
         <div className={`container ${shell.headerInner}`}>
           <a href={t.home} className={shell.logo} aria-label={t.homeLabel}>
-            <img src="/logo.png" alt="TicoSystem" />
+            <img src="/logo.webp" alt="TicoSystem" />
           </a>
           <div className={shell.headerActions}>
             <a href={t.home} className={shell.blogLabel}>{t.homeLabel}</a>
@@ -114,12 +115,7 @@ export default function ServicePage({ lang, service }: { lang: Lang; service: Se
         </article>
       </main>
 
-      <footer className={shell.footer}>
-        <div className={`container ${shell.footerInner}`}>
-          <img src="/logo.png" alt="TicoSystem" />
-          <p className={shell.copyright}>© {new Date().getFullYear()} TicoSystem. {lang === "vi" ? "Số hóa logic kinh doanh của bạn." : "Digitize your business logic."}</p>
-        </div>
-      </footer>
+      <SiteFooter lang={lang} />
     </div>
   );
 }

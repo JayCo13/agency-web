@@ -1,21 +1,32 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './ScrollToTop.module.css';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const visibleRef = useRef(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+    // Coalesce to one read per frame and only touch React state when the
+    // threshold is actually crossed, instead of on every scroll event.
+    let ticking = false;
+    const check = () => {
+      ticking = false;
+      const next = window.scrollY > 500;
+      if (next !== visibleRef.current) {
+        visibleRef.current = next;
+        setIsVisible(next);
       }
     };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(check);
+    };
 
-    window.addEventListener('scroll', toggleVisibility, { passive: true });
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    check();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const scrollToTop = () => {

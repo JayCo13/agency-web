@@ -1,0 +1,130 @@
+.footer {
+  background: var(--mist);
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 0.8fr 1fr;
+  gap: 2.5rem;
+}
+
+/* Logo, tagline and company name share one centred column, so the logo
+   sits in the middle of the text block below it. */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin: -1.25rem 0 0;
+}
+
+.tagline {
+  margin-top: 0.25rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.legal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.legal strong {
+  color: var(--ink);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.colTitle {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 0 0 1rem;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.list a {
+  color: var(--ink-soft);
+  transition: color 0.15s ease;
+  word-break: break-word;
+}
+
+.list a:hover {
+  color: var(--brand);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.825rem;
+  color: var(--ink-soft);
+}
+
+.bottom p {
+  color: inherit;
+}
+
+.bottom a:hover {
+  color: var(--brand);
+}
+
+.footer a:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brandCol {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .inner {
+    padding: 3rem 1rem 2.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

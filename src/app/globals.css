@@ -1,16 +1,40 @@
 /* src/app/globals.css */
 :root {
+  /* Brand tokens */
+  --ink: #2B1D16;
+  --ink-soft: #6B5A50;
+  --mist: #FAF6F2;
+  --line: #EEE4DB;
+  --line-strong: #DCCBBD;
+  --brand: #8A5A3B;
+  --brand-deep: #6E4429;
+  --brand-light: #C99467;
+  --brand-tint: #F7EEE6;
+  --brand-soft: #EBD9C9;
+  --sun: #F6B44C;
+  --sun-tint: #FFF3DD;
+  --shadow-soft: 0 12px 32px -12px rgba(90, 55, 30, 0.18);
+  --shadow-float: 0 18px 40px -14px rgba(70, 40, 20, 0.25);
+
+  /* Legacy names still used by blog/service/admin styles */
   --bg-dark: #FFFFFF;
-  --bg-card: #F8FAFC;
-  --text-main: #0F172A;
-  --text-muted: #475569;
-  --accent-blue: #0F172A;
-  --accent-blue-hover: #1E293B;
-  --accent-emerald: var(--text-main);
-  --accent-emerald-hover: #334155;
-  --border-color: #E2E8F0;
+  --bg-card: var(--mist);
+  --text-main: var(--ink);
+  --text-muted: var(--ink-soft);
+  --accent-blue: var(--brand);
+  --accent-blue-hover: var(--brand-deep);
+  --accent-emerald: var(--ink);
+  --accent-emerald-hover: #4A3428;
+  --border-color: var(--line);
 
   --nav-height: 80px;
+}
+
+/* One typeface across the site. The old variable names resolve to it so the
+   blog and service pages pick it up without touching their stylesheets. */
+body {
+  --font-inter: var(--font-sans);
+  --font-playfair: var(--font-sans);
 }
 
 * {
@@ -25,8 +49,9 @@ body {
   overflow-x: hidden;
   background-color: var(--bg-dark);
   color: var(--text-main);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -52,10 +77,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-playfair), serif;
-  font-weight: 600;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 700;
   line-height: 1.2;
-  font-display: fallback
+  letter-spacing: -0.02em;
 }
 
 h1 {
@@ -139,13 +164,13 @@ p {
 .btn-primary {
   background-color: var(--accent-blue);
   color: white;
-  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+
 }
 
 .btn-primary:hover {
   background-color: var(--accent-blue-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+
 }
 
 .btn-secondary {
@@ -162,12 +187,15 @@ p {
 /* Scroll Reveal Utilities */
 .reveal-wrapper {
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: opacity, transform;
 }
 
+/* will-change lives on the pre-reveal state only. On .reveal-wrapper it pinned
+   a compositing layer per section for the entire session, even after the
+   one-shot animation had finished. */
 .reveal-hidden {
   opacity: 0;
   transform: translateY(40px);
+  will-change: opacity, transform;
 }
 
 .reveal-visible {
@@ -175,6 +203,74 @@ p {
   transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .reveal-wrapper {
+    transition: none;
+  }
+
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+html {
+  scroll-padding-top: 80px;
+}
+
+/* ---------- Scroll reveal (armed by components/home/ScrollReveal) ---------- */
+
+html [data-rv] {
+  --rv-dir: 1;
+  --rv-x: 0px;
+  --rv-y: 36px;
+  --rv-s: 1;
+  opacity: 0;
+  transform: translate3d(var(--rv-x), calc(var(--rv-y) * var(--rv-dir)), 0) scale(var(--rv-s));
+  /* Higher specificity than component rules so the reveal transition wins;
+     hover colour/shadow transitions are kept in the list. */
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  transition-delay: 0ms;
+}
+
+html [data-rv][data-rv-from="top"] {
+  --rv-dir: -1;
+}
+
+[data-rv="left"] {
+  --rv-x: -48px;
+  --rv-y: 16px;
+}
+
+[data-rv="right"] {
+  --rv-x: 48px;
+  --rv-y: 16px;
+}
+
+[data-rv="zoom"] {
+  --rv-s: 0.94;
+  --rv-y: 28px;
+}
+
+html [data-rv][data-rv-in] {
+  opacity: 1;
+  transform: none;
+  transition-delay: var(--rv-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html [data-rv] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

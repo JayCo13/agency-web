@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
+import { COMPANY } from "@/lib/company";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
+// Be Vietnam Pro: drawn for Vietnamese diacritics first, reads cleanly in
+// English too. One family for the whole site.
+const sans = Be_Vietnam_Pro({
+  variable: "--font-sans",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const SITE_URL = "https://ticosystem.com";
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Web Development, Custom Systems & AI Automation | TicoSystem",
   description:
-    "We build web apps, custom business systems, AI chatbots and automation bots to European standards. Book a free 15-minute discovery call.",
+    "TicoSystem (TC Technology and Software Solutions Co., Ltd.) builds web apps, custom business systems, AI chatbots and automation for clients in Vietnam and Europe. Book a free 15-minute call.",
   alternates: {
     canonical: "/",
     languages: {
@@ -51,39 +51,32 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "TicoSystem",
+  "@type": "Organization",
+  name: COMPANY.brand,
+  legalName: COMPANY.legalNameVi,
+  alternateName: [COMPANY.legalNameEn, COMPANY.shortNameEn],
   url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  email: COMPANY.email,
+  telephone: COMPANY.phoneE164,
+  ...(COMPANY.taxId ? { taxID: COMPANY.taxId } : {}),
+  ...(COMPANY.address.vi
+    ? { address: { "@type": "PostalAddress", streetAddress: COMPANY.address.vi, addressCountry: "VN" } }
+    : { address: { "@type": "PostalAddress", addressCountry: "VN" } }),
+  sameAs: [COMPANY.linkedin],
   description:
-    "Web development, custom systems, AI chatbots and automation bots",
+    "Web development, custom business systems, AI chatbots and process automation",
   founder: {
     "@type": "Person",
     name: "Tyler Tai Co",
     jobTitle: "Tech Lead",
   },
-  areaServed: ["Worldwide", "Vietnam", "DACH"],
+  areaServed: ["Vietnam", "Switzerland", "Austria", "Germany", "Worldwide"],
   knowsAbout: [
     "Web Development",
     "AI Chatbots",
     "Business Automation",
     "Product Configurators",
-  ],
-  makesOffer: [
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "Custom Web Application Development",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: "AI Chatbot Development" },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: "Business Process Automation" },
-    },
   ],
 };
 
@@ -94,7 +87,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable}`}>
+      <body className={sans.variable}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

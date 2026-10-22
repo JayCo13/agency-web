@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "@/app/blog/blog.module.css";
 import type { Lang } from "@/lib/blog";
+import SiteFooter from "@/components/home/SiteFooter";
 
 const T = {
   en: { home: "/", blog: "/blog", label: "Blog", cta: "Book a Call" },
@@ -29,7 +30,7 @@ export default function BlogShell({
       <header className={styles.header}>
         <div className={`container ${styles.headerInner}`}>
           <a href={t.blog} className={styles.logo} aria-label={t.label}>
-            <img src="/logo.png" alt="TicoSystem" />
+            <img src="/logo.webp" alt="TicoSystem" />
           </a>
           <div className={styles.headerActions}>
             <a href={t.home} className={styles.blogLabel}>
@@ -63,17 +64,7 @@ export default function BlogShell({
 
       <main className={styles.main}>{children}</main>
 
-      <footer className={styles.footer}>
-        <div className={`container ${styles.footerInner}`}>
-          <img src="/logo.png" alt="TicoSystem" />
-          <p className={styles.copyright}>
-            © {new Date().getFullYear()} TicoSystem. {""}
-            {lang === "vi"
-              ? "Số hóa logic kinh doanh của bạn."
-              : "Digitize your business logic."}
-          </p>
-        </div>
-      </footer>
+      <SiteFooter lang={lang} />
     </div>
   );
 }

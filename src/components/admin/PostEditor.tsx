@@ -17,6 +17,20 @@ async function upload(file: File): Promise<string> {
   return url;
 }
 
+/**
+ * Format a stored ISO timestamp for a `datetime-local` input, which wants
+ * `YYYY-MM-DDTHH:mm` in the viewer's own timezone (no zone suffix).
+ */
+function toLocalInput(iso: string | null | undefined): string {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(
+    d.getHours(),
+  )}:${pad(d.getMinutes())}`;
+}
+
 function ContentField({
   lang,
   name,
@@ -176,11 +190,6 @@ export default function PostEditor({ post }: { post?: AdminPostRow }) {
   return (
     <form action={savePost} className={styles.form}>
       <input type="hidden" name="id" defaultValue={post?.id ?? ""} />
-      <input
-        type="hidden"
-        name="published_at"
-        defaultValue={post?.published_at ?? ""}
-      />
 
       <div className={styles.editorHead}>
         <h1>{isEdit ? "Edit post" : "New post"}</h1>
@@ -230,6 +239,19 @@ export default function PostEditor({ post }: { post?: AdminPostRow }) {
               defaultValue={post?.tags?.join(", ") ?? ""}
               placeholder="web development, pricing"
             />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="published_at">Publish date</label>
+            <input
+              type="datetime-local"
+              id="published_at"
+              name="published_at"
+              defaultValue={toLocalInput(post?.published_at)}
+            />
+            <small className={styles.hint}>
+              Leave empty to stamp the current time when you publish. The blog
+              list is ordered by this date, newest first.
+            </small>
           </div>
         </div>
         <div style={{ marginTop: "1rem" }}>

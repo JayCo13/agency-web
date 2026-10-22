@@ -224,15 +224,24 @@ const Lightfall = ({
   const rendererRef = useRef<Renderer | null>(null);
   const mouseTargetRef = useRef<[number, number]>([0, 0]);
   const lastTimeRef = useRef<number>(0);
+  const elapsedRef = useRef<number>(0);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
+    // The fragment shader raymarches three times per pixel, so cost scales with
+    // the square of the device pixel ratio. Full retina DPR pegs the GPU and
+    // janks scrolling for a soft glow nobody inspects pixel-by-pixel — cap it.
+    const isSmall = window.matchMedia('(max-width: 768px)').matches;
+    const nativeDpr = window.devicePixelRatio || 1;
+    const effectiveDpr = dpr ?? Math.min(nativeDpr, isSmall ? 1 : 1.5);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const renderer = new Renderer({
-      dpr: dpr ?? (typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1),
+      dpr: effectiveDpr,
       alpha: true,
-      antialias: true
+      antialias: false
     });
     rendererRef.current = renderer;
     const gl = renderer.gl;
@@ -283,16 +292,6 @@ const Lightfall = ({
     const mesh = new Mesh(gl, { geometry, program });
     meshRef.current = mesh;
 
-    const resize = () => {
-      const rect = container.getBoundingClientRect();
-      renderer.setSize(rect.width, rect.height);
-      uniforms.iResolution.value = [gl.drawingBufferWidth, gl.drawingBufferHeight, 1];
-    };
-
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(container);
-
     const onPointerMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       const scale = renderer.dpr || 1;
@@ -307,13 +306,38 @@ const Lightfall = ({
       canvas.addEventListener('pointermove', onPointerMove);
     }
 
+    const draw = () => {
+      if (!programRef.current || !meshRef.current) return;
+      try {
+        renderer.render({ scene: meshRef.current });
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    const resize = () => {
+      const rect = container.getBoundingClientRect();
+      renderer.setSize(rect.width, rect.height);
+      uniforms.iResolution.value = [gl.drawingBufferWidth, gl.drawingBufferHeight, 1];
+      // While the loop is stopped (off-screen, hidden tab, reduced motion) no
+      // frame would follow the resize, leaving a stretched buffer.
+      if (rafRef.current == null) draw();
+    };
+
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(container);
+
     const loop = (t: number) => {
       rafRef.current = requestAnimationFrame(loop);
-      uniforms.iTime.value = t * 0.001;
-      if (mouseDampening > 0) {
-        if (!lastTimeRef.current) lastTimeRef.current = t;
-        const dt = (t - lastTimeRef.current) / 1000;
-        lastTimeRef.current = t;
+      if (!lastTimeRef.current) lastTimeRef.current = t;
+      const dt = (t - lastTimeRef.current) / 1000;
+      lastTimeRef.current = t;
+      // Accumulate our own clock instead of using the raw rAF timestamp, so
+      // pausing off-screen resumes where it left off rather than jumping.
+      elapsedRef.current += dt;
+      uniforms.iTime.value = elapsedRef.current;
+      if (mouseInteraction && mouseDampening > 0) {
         const tau = Math.max(1e-4, mouseDampening);
         let factor = 1 - Math.exp(-dt / tau);
         if (factor > 1) factor = 1;
@@ -321,21 +345,54 @@ const Lightfall = ({
         const cur = uniforms.iMouse.value;
         cur[0] += (target[0] - cur[0]) * factor;
         cur[1] += (target[1] - cur[1]) * factor;
-      } else {
-        lastTimeRef.current = t;
       }
-      if (!paused && programRef.current && meshRef.current) {
-        try {
-          renderer.render({ scene: meshRef.current });
-        } catch (e) {
-          console.error(e);
-        }
-      }
+      if (!paused) draw();
     };
-    rafRef.current = requestAnimationFrame(loop);
+
+    const start = () => {
+      if (rafRef.current != null) return;
+      lastTimeRef.current = 0;
+      rafRef.current = requestAnimationFrame(loop);
+    };
+    const stop = () => {
+      if (rafRef.current == null) return;
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    };
+
+    // Only burn GPU while the canvas is actually on screen and the tab is
+    // focused. Previously the loop ran for the whole page scroll.
+    let inView = true;
+    let tabVisible = !document.hidden;
+    const sync = () => {
+      if (inView && tabVisible && !paused && !reduceMotion) start();
+      else stop();
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        sync();
+      },
+      { rootMargin: '120px' }
+    );
+    io.observe(container);
+
+    const onVisibility = () => {
+      tabVisible = !document.hidden;
+      sync();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    // Paint one frame immediately so the hero is never blank, then let sync()
+    // decide whether to keep animating.
+    draw();
+    sync();
 
     return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      stop();
+      io.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
       if (mouseInteraction) canvas.removeEventListener('pointermove', onPointerMove);
       ro.disconnect();
       if (canvas.parentElement === container) {

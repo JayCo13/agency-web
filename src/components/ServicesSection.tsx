@@ -32,9 +32,10 @@ const icons = {
   ),
 };
 
-const CONTENT: Record<Lang, { title: string; subtitle: string; cta: string; items: Service[] }> = {
+const CONTENT: Record<Lang, { eyebrow: string; title: string; subtitle: string; cta: string; items: Service[] }> = {
   en: {
-    title: "What We Build",
+    eyebrow: "Services",
+    title: "Everything your business needs to run on software",
     subtitle:
       "From a single web app to a company-wide system — engineered to European standards and wired into the tools you already use.",
     cta: "Learn more",
@@ -48,15 +49,16 @@ const CONTENT: Record<Lang, { title: string; subtitle: string; cta: string; item
     ],
   },
   vi: {
-    title: "Chúng Tôi Xây Dựng Gì",
+    eyebrow: "Dịch vụ",
+    title: "Mọi thứ doanh nghiệp cần để vận hành trên phần mềm",
     subtitle:
       "Từ một web app đơn lẻ đến hệ thống cho cả công ty — theo tiêu chuẩn châu Âu và tích hợp với công cụ bạn đang dùng.",
     cta: "Tìm hiểu thêm",
     items: [
       { slug: "web-development", name: "Web Application", desc: "Web app, dashboard và công cụ nội bộ tùy chỉnh theo đúng quy trình của bạn.", icon: icons.web },
-      { slug: "custom-systems", name: "Hệ Thống Quản Lý", desc: "Nền tảng quản lý doanh nghiệp kết nối dữ liệu, phân quyền và quy trình về một chỗ.", icon: icons.system },
+      { slug: "custom-systems", name: "Hệ thống quản lý", desc: "Nền tảng quản lý doanh nghiệp kết nối dữ liệu, phân quyền và quy trình về một chỗ.", icon: icons.system },
       { slug: "ai-chatbots", name: "Chatbot AI", desc: "Chatbot chăm sóc & bán hàng trả lời tức thì, lọc khách tiềm năng 24/7.", icon: icons.bot },
-      { slug: "automation", name: "Bot Tự Động Hóa", desc: "Bot xóa bỏ việc thủ công lặp lại và đồng bộ dữ liệu giữa các hệ thống.", icon: icons.automation },
+      { slug: "automation", name: "Bot tự động hóa", desc: "Bot xóa bỏ việc thủ công lặp lại và đồng bộ dữ liệu giữa các hệ thống.", icon: icons.automation },
       { slug: "product-configurators", name: "Product Configurator", desc: "Công cụ cấu hình trực quan biến bảng giá phức tạp thành báo giá tức thì, chính xác.", icon: icons.configurator },
       { slug: "ecommerce", name: "E-commerce & Portal", desc: "Cửa hàng, sàn giao dịch và cổng khách hàng mở rộng cùng doanh nghiệp.", icon: icons.ecommerce },
     ],
@@ -68,20 +70,22 @@ export default function ServicesSection({ lang = "en" }: { lang?: Lang }) {
   const base = lang === "vi" ? "/vi/services" : "/services";
 
   return (
-    <section id="services" className={`section ${styles.services}`}>
-      <div className="container">
+    <section id="services" className={styles.services}>
+      <div className={styles.svcWrap}>
         <div className={styles.head}>
+          <p className={styles.eyebrow}>{t.eyebrow}</p>
           <h2>{t.title}</h2>
-          <p>{t.subtitle}</p>
+          <svg className={styles.squiggle} width="72" height="14" viewBox="0 0 72 14" fill="none" aria-hidden="true"><path d="M4 7Q14.5 1 25 7T46 7T67 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" /></svg>
+          <p className={styles.sub}>{t.subtitle}</p>
         </div>
 
-        <div className={styles.grid}>
-          {t.items.map((s) => (
+        <div className={styles.svcGrid}>
+          {t.items.map((s, i) => (
             <a key={s.slug} href={`${base}/${s.slug}`} className={styles.card}>
-              <div className={styles.icon}>{s.icon}</div>
+              <div className={`${styles.icon} ${i === 2 ? styles.iconSun : ""}`}>{s.icon}</div>
               <h3 className={styles.cardTitle}>{s.name}</h3>
               <p className={styles.cardDesc}>{s.desc}</p>
-              <span className={styles.cardLink}>{t.cta} →</span>
+              <span className={styles.cardLink}>{t.cta}</span>
             </a>
           ))}
         </div>

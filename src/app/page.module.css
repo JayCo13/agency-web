@@ -21,7 +21,9 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+  /* Deliberately not transitioning backdrop-filter — animating a blur radius
+     re-blurs the full-width strip every frame for the whole 0.3s. */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Solid frosted header once scrolled past the hero top. */
@@ -336,9 +338,9 @@
   background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
   flex-shrink: 0;
   position: relative;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease, opacity 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease, z-index 0s 0.6s;
-  filter: brightness(1) contrast(1.05);
-  /* Bright and clear base state */
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease, z-index 0s 0.6s;
+  /* No base `filter`: it would promote all 28 frames to their own filtered
+     compositing layer for an imperceptible contrast bump. */
   opacity: 1;
   cursor: pointer;
   z-index: 1;
@@ -360,17 +362,17 @@
   z-index: 5;
 }
 
-/* Dim all items gently when track is hovered */
+/* Dim all items gently when track is hovered. Opacity + transform only —
+   blur/grayscale here meant 28 full-size images through a GPU filter pass at
+   once, which was the single worst hover cost on the page. */
 .marqueeTrack:hover .marqueeItem {
-  filter: blur(1px) brightness(0.9) grayscale(20%);
   transform: scale(0.96);
-  opacity: 0.7;
+  opacity: 0.55;
   z-index: 1;
 }
 
 /* Make hovered item pop out with electric glow */
 .marqueeTrack .marqueeItem:hover {
-  filter: blur(0px) brightness(1.05) contrast(1.05);
   transform: scale(1.15) translateY(-20px);
   opacity: 1;
   z-index: 50;
@@ -379,7 +381,7 @@
   box-shadow:
     0 30px 60px rgba(15, 23, 42, 0.15),
     0 0 40px rgba(15, 23, 42, 0.15);
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease, opacity 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease, z-index 0s 0s;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease, z-index 0s 0s;
 }
 
 .marqueeItem img {
@@ -414,7 +416,6 @@
 
 /* Click-to-toggle active state */
 .marqueeItemActive {
-  filter: blur(0px) brightness(1.05) contrast(1.05) !important;
   transform: scale(1.15) translateY(-20px) !important;
   opacity: 1 !important;
   z-index: 50 !important;

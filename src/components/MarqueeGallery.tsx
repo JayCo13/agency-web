@@ -24,15 +24,26 @@ export default function MarqueeGallery({ items }: { items: MarqueeItem[] }) {
     return () => document.removeEventListener('click', handleOutsideClick);
   }, []);
 
-  const renderItem = (item: MarqueeItem, key: string) => {
+  const renderItem = (item: MarqueeItem, key: string, index: number) => {
     const isActive = activeIndex === key;
+    // Only the first couple of frames are on screen at rest; everything else
+    // scrolls in later, so let the browser defer those decodes.
+    const eager = key.startsWith('orig-') && index < 2;
     return (
       <div
         key={key}
         className={`${styles.marqueeItem} ${isActive ? styles.marqueeItemActive : ''}`}
         onClick={(e) => handleClick(e, key)}
       >
-        <img src={`/projects/${item.img}.png`} alt={item.title} />
+        <img
+          src={`/projects/${item.img}.webp`}
+          alt={item.title}
+          width={1200}
+          height={675}
+          loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
+          draggable={false}
+        />
         <div className={`${styles.marqueeOverlay} ${isActive ? styles.marqueeOverlayVisible : ''}`}>
           <span className={styles.marqueeCategory}>{item.category}</span>
           <h4 className={styles.marqueeTitle}>{item.title}</h4>
@@ -51,8 +62,8 @@ export default function MarqueeGallery({ items }: { items: MarqueeItem[] }) {
       </div>
       <div className={styles.marqueeContainer}>
         <div className={styles.marqueeTrack}>
-          {items.map((item, i) => renderItem(item, `orig-${i}`))}
-          {items.map((item, i) => renderItem(item, `dup-${i}`))}
+          {items.map((item, i) => renderItem(item, `orig-${i}`, i))}
+          {items.map((item, i) => renderItem(item, `dup-${i}`, i))}
         </div>
       </div>
     </section>
