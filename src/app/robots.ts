@@ -7,6 +7,5 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: "https://ticosystem.com/sitemap.xml",
-    host: "https://ticosystem.com",
   };
 }
