@@ -2,13 +2,15 @@ import React from "react";
 import shell from "@/app/blog/blog.module.css";
 import styles from "./ServicePage.module.css";
 import { SERVICES, type Service, type Lang } from "@/lib/services";
+import { getServiceExtra } from "@/lib/services-extra";
+import { HOME } from "@/lib/home-content";
 import SiteFooter from "@/components/home/SiteFooter";
 
 const SITE = "https://ticosystem.com";
 
 const T = {
-  en: { home: "/", homeLabel: "Home", servicesLabel: "All services", cta: "Book a Call", contact: "/#contact", related: "Other services", faqTitle: "Frequently asked questions", buildTitle: "What we build", whoTitle: "Who it's for", ctaTitle: "Ready to start?", ctaBtn: "Book a free 15-min call", base: "/services" },
-  vi: { home: "/vi", homeLabel: "Trang chủ", servicesLabel: "Tất cả dịch vụ", cta: "Đặt Lịch", contact: "/vi/#contact", related: "Dịch vụ khác", faqTitle: "Câu hỏi thường gặp", buildTitle: "Chúng tôi xây dựng gì", whoTitle: "Phù hợp với ai", ctaTitle: "Sẵn sàng bắt đầu?", ctaBtn: "Đặt lịch tư vấn miễn phí 15 phút", base: "/vi/services" },
+  en: { home: "/", homeLabel: "Home", servicesLabel: "All services", cta: "Book a Call", contact: "/#contact", related: "Other services", faqTitle: "Frequently asked questions", approachTitle: "How we approach it", pricingTitle: "Starting prices", exampleTitle: "A project we delivered", visit: "Visit the site", guideTitle: "Read more", buildTitle: "What we build", whoTitle: "Who it's for", ctaTitle: "Ready to start?", ctaBtn: "Book a free 15-min call", base: "/services" },
+  vi: { home: "/vi", homeLabel: "Trang chủ", servicesLabel: "Tất cả dịch vụ", cta: "Đặt Lịch", contact: "/vi/#contact", related: "Dịch vụ khác", faqTitle: "Câu hỏi thường gặp", approachTitle: "Cách chúng tôi làm", pricingTitle: "Giá khởi điểm", exampleTitle: "Dự án đã làm", visit: "Xem website", guideTitle: "Đọc thêm", buildTitle: "Chúng tôi xây dựng gì", whoTitle: "Phù hợp với ai", ctaTitle: "Sẵn sàng bắt đầu?", ctaBtn: "Đặt lịch tư vấn miễn phí 15 phút", base: "/vi/services" },
 } as const;
 
 export default function ServicePage({ lang, service }: { lang: Lang; service: Service }) {
@@ -16,11 +18,14 @@ export default function ServicePage({ lang, service }: { lang: Lang; service: Se
   const c = service[lang];
   const altHref = `${lang === "en" ? "/vi" : ""}/services/${service.slug}`;
   const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const extra = getServiceExtra(service.slug, lang);
+  const home = HOME[lang];
+  const faqs = [...c.faqs, ...(extra?.faqs ?? [])];
 
   const faqLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: c.faqs.map((f) => ({
+    mainEntity: faqs.map((f) => ({
       "@type": "Question",
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -70,6 +75,13 @@ export default function ServicePage({ lang, service }: { lang: Lang; service: Se
 
           <p className={styles.intro}>{c.intro}</p>
 
+          {extra && (
+            <>
+              <h2 className={styles.h2}>{t.approachTitle}</h2>
+              <p className={styles.intro}>{extra.approach}</p>
+            </>
+          )}
+
           <h2 className={styles.h2}>{t.buildTitle}</h2>
           <div className={styles.buildGrid}>
             {c.build.map((b) => (
@@ -80,20 +92,74 @@ export default function ServicePage({ lang, service }: { lang: Lang; service: Se
             ))}
           </div>
 
+          <h2 className={styles.h2}>{home.process.title}</h2>
+          <ol className={styles.steps}>
+            {home.process.steps.map((s) => (
+              <li key={s.title}>
+                <h3>{s.title}</h3>
+                <p>{s.desc}</p>
+              </li>
+            ))}
+          </ol>
+
+          {extra && (
+            <>
+              <h2 className={styles.h2}>{t.pricingTitle}</h2>
+              <div className={styles.priceGrid}>
+                {extra.pricing.map((p) => (
+                  <div key={p.tier} className={styles.priceCard}>
+                    <h3>{p.tier}</h3>
+                    <p className={styles.price}>{p.price}</p>
+                    <p>{p.desc}</p>
+                  </div>
+                ))}
+              </div>
+              <p className={styles.priceNote}>{extra.pricingNote}</p>
+            </>
+          )}
+
+          {extra?.example && (
+            <>
+              <h2 className={styles.h2}>{t.exampleTitle}</h2>
+              <div className={styles.example}>
+                <h3>
+                  {extra.example.client} <span>· {extra.example.place}</span>
+                </h3>
+                <p>{extra.example.text}</p>
+                {extra.example.href && (
+                  <a href={extra.example.href} target="_blank" rel="noopener noreferrer">
+                    {t.visit} →
+                  </a>
+                )}
+              </div>
+            </>
+          )}
+
           <h2 className={styles.h2}>{t.whoTitle}</h2>
           <ul className={styles.whoList}>
             {c.whoFor.map((w) => <li key={w}>{w}</li>)}
           </ul>
 
+          <h2 className={styles.h2}>{home.promises.title}</h2>
+          <ul className={styles.whoList}>
+            {home.promises.items.map((p) => <li key={p}>{p}</li>)}
+          </ul>
+
           <h2 className={styles.h2}>{t.faqTitle}</h2>
           <div className={styles.faq}>
-            {c.faqs.map((f) => (
+            {faqs.map((f) => (
               <div key={f.q} className={styles.faqItem}>
                 <h3>{f.q}</h3>
                 <p>{f.a}</p>
               </div>
             ))}
           </div>
+
+          {extra && (
+            <p className={styles.guide}>
+              {t.guideTitle}: <a href={extra.guide.href}>{extra.guide.title} →</a>
+            </p>
+          )}
 
           <div className={styles.ctaCard}>
             <h2>{t.ctaTitle}</h2>
