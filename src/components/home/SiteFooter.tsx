@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./footer.module.css";
 import { COMPANY } from "@/lib/company";
 import { SERVICES } from "@/lib/services";
+import { POLICIES } from "@/lib/policies";
 
 type Lang = "en" | "vi";
 
@@ -17,6 +18,7 @@ const T = {
     book: "Đặt lịch tư vấn",
     taxId: "MST",
     rights: "All rights reserved.",
+    policies: "Chính sách",
   },
   en: {
     tagline: "Custom software for growing businesses.",
@@ -29,6 +31,7 @@ const T = {
     book: "Book a call",
     taxId: "Tax ID",
     rights: "All rights reserved.",
+    policies: "Policies",
   },
 } as const;
 
@@ -38,6 +41,7 @@ export default function SiteFooter({ lang }: { lang: Lang }) {
   const home = lang === "vi" ? "/vi" : "";
   const servicesBase = lang === "vi" ? "/vi/services" : "/services";
   const address = COMPANY.address[lang];
+  const companyName = lang === "vi" ? COMPANY.legalNameVi : COMPANY.shortNameEn;
 
   return (
     <footer className={styles.footer}>
@@ -90,9 +94,22 @@ export default function SiteFooter({ lang }: { lang: Lang }) {
           </div>
         </div>
 
+        <nav className={styles.policies} aria-label={t.policies}>
+          <a href={lang === "vi" ? "/vi/policies" : "/policies"} className={styles.policiesTitle}>
+            {t.policies}
+          </a>
+          {POLICIES.map((p) => (
+            <a key={p.slug} href={`${lang === "vi" ? "/vi" : ""}/policies/${p.slug}`}>
+              {p[lang].navTitle}
+            </a>
+          ))}
+        </nav>
+
         <div className={styles.bottom}>
           <p>
-            © {new Date().getFullYear()} {lang === "vi" ? COMPANY.legalNameVi : COMPANY.shortNameEn}. {t.rights}
+            © {new Date().getFullYear()} {companyName}
+            {companyName.endsWith(".") ? " " : ". "}
+            {t.rights}
           </p>
           <a href={COMPANY.site}>ticosystem.com</a>
         </div>

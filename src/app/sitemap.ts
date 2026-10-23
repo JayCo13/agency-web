@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getPublishedPosts } from "@/lib/blog";
 import { allServiceSlugs } from "@/lib/services";
+import { allPolicySlugs } from "@/lib/policies";
 
 const BASE_URL = "https://ticosystem.com";
 
@@ -80,5 +81,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   }));
 
-  return [...staticEntries, ...serviceEntries, ...postEntries];
+  // Policy pages (EN + VI alternates).
+  const policyEntries: MetadataRoute.Sitemap = ["", ...allPolicySlugs().map((s) => `/${s}`)].flatMap((path) =>
+    (["", "/vi"] as const).map((lang) => ({
+      url: `${BASE_URL}${lang}/policies${path}`,
+      lastModified: now,
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+      alternates: {
+        languages: {
+          en: `${BASE_URL}/policies${path}`,
+          vi: `${BASE_URL}/vi/policies${path}`,
+        },
+      },
+    })),
+  );
+
+  return [...staticEntries, ...serviceEntries, ...policyEntries, ...postEntries];
 }

@@ -75,7 +75,7 @@ export const HOME: Record<Lang, HomeCopy> = {
   vi: {
     nav: { work: "Dự án", services: "Dịch vụ", process: "Quy trình", about: "Về chúng tôi", faq: "Hỏi đáp", blog: "Blog", cta: "Đặt lịch tư vấn", menu: "Mở menu" },
     hero: {
-      badge: "Công ty TNHH Giải pháp Công nghệ và Phần mềm TC",
+      badge: "Công ty TNHH Giải pháp Phần mềm và Công nghệ TC",
       title: "Tự động hóa công việc theo cách doanh nghiệp bạn mong muốn",
       lead: "Xây dựng web app, phần mềm quản lý và tự động hóa tích hợp AI. Thiết kế riêng, giải quyết chuẩn xác khó khăn doanh nghiệp bạn đang gặp.",
       primaryTop: "Miễn phí 15 phút",
@@ -114,7 +114,7 @@ export const HOME: Record<Lang, HomeCopy> = {
     about: {
       eyebrow: "Về chúng tôi",
       title: "Xin chào, chúng tôi là TicoSystem!",
-      body: "TicoSystem là thương hiệu của Công ty TNHH Giải pháp Công nghệ và Phần mềm TC. Chúng tôi nhận những bài toán mà phần mềm đóng gói sẵn không giải được: quy trình riêng, bảng giá phức tạp, nhiều hệ thống cần kết nối với nhau.",
+      body: "TicoSystem là thương hiệu của Công ty TNHH Giải pháp Phần mềm và Công nghệ TC. Chúng tôi nhận những bài toán mà phần mềm đóng gói sẵn không giải được: quy trình riêng, bảng giá phức tạp, nhiều hệ thống cần kết nối với nhau.",
       cta: "Trò chuyện với chúng tôi",
       points: [
         "Pháp nhân tại Việt Nam",
@@ -141,7 +141,7 @@ export const HOME: Record<Lang, HomeCopy> = {
       offerSub: "Cuộc gọi tư vấn 15 phút",
       offerAlt: "Nhận báo giá theo hạng mục sau cuộc gọi",
       offerCta: "Đặt lịch ngay",
-      guarantee: "Ký hợp đồng với Công ty TNHH Giải pháp Công nghệ và Phần mềm TC",
+      guarantee: "Ký hợp đồng với Công ty TNHH Giải pháp Phần mềm và Công nghệ TC",
     },
     faq: {
       eyebrow: "Hỏi đáp",
@@ -150,7 +150,7 @@ export const HOME: Record<Lang, HomeCopy> = {
         { q: "Chi phí một dự án khoảng bao nhiêu?", a: "Tùy phạm vi. Sau buổi tư vấn, chúng tôi gửi báo giá chi tiết theo từng hạng mục để bạn chọn phần nào làm trước, phần nào để sau." },
         { q: "Bao lâu thì có sản phẩm dùng được?", a: "Một phiên bản đầu tiên tập trung thường hoàn thành trong vài tuần, sau đó tiếp tục mở rộng. Mốc thời gian cụ thể được ghi rõ trong báo giá." },
         { q: "Tôi có sở hữu mã nguồn không?", a: "Có. Toàn bộ mã nguồn, thiết kế và dữ liệu được bàn giao cho bạn khi dự án hoàn tất." },
-        { q: "Công ty có ký hợp đồng và xuất hóa đơn không?", a: "Có. Mọi dự án đều ký hợp đồng với Công ty TNHH Giải pháp Công nghệ và Phần mềm TC và được xuất hóa đơn theo quy định." },
+        { q: "Công ty có ký hợp đồng và xuất hóa đơn không?", a: "Có. Mọi dự án đều ký hợp đồng với Công ty TNHH Giải pháp Phần mềm và Công nghệ TC và được xuất hóa đơn theo quy định." },
         { q: "Sau khi bàn giao có hỗ trợ không?", a: "Có. Chúng tôi hỗ trợ sửa lỗi sau bàn giao và có thể tiếp tục bảo trì, phát triển thêm tính năng theo thỏa thuận." },
       ],
     },
@@ -258,7 +258,7 @@ export const HOME: Record<Lang, HomeCopy> = {
   en: {
     nav: { work: "Work", services: "Services", process: "Process", about: "About", faq: "FAQ", blog: "Blog", cta: "Book a call", menu: "Open menu" },
     hero: {
-      badge: "TC Technology & Software Solutions Co., Ltd.",
+      badge: "TC Technology and Software Solution Co., Ltd.",
       title: "Software that runs the way your business does",
       lead: "Web apps, management systems, AI chatbots and process automation, designed around your own problem.",
       primaryTop: "Free 15-min call",
@@ -297,7 +297,7 @@ export const HOME: Record<Lang, HomeCopy> = {
     about: {
       eyebrow: "About us",
       title: "Hi, we're TicoSystem!",
-      body: "TicoSystem is the brand of TC Technology and Software Solutions Co., Ltd., a software company registered in Vietnam. We take on the problems off-the-shelf software can't solve: custom workflows, complex pricing, and systems that need to connect with each other.",
+      body: "TicoSystem is the brand of TC Technology and Software Solution Co., Ltd., a software company registered in Vietnam. We take on the problems off-the-shelf software can't solve: custom workflows, complex pricing, and systems that need to connect with each other.",
       cta: "Talk to us",
       points: [
         "Registered company in Vietnam",
@@ -324,7 +324,7 @@ export const HOME: Record<Lang, HomeCopy> = {
       offerSub: "15-minute discovery call",
       offerAlt: "Itemised quote after the call",
       offerCta: "Book now",
-      guarantee: "Contract with TC Technology & Software Solutions Co., Ltd.",
+      guarantee: "Contract with TC Technology and Software Solution Co., Ltd.",
     },
     faq: {
       eyebrow: "FAQ",

@@ -29,7 +29,7 @@ export default function BlogShell({
     <div className={styles.wrapper}>
       <header className={styles.header}>
         <div className={`container ${styles.headerInner}`}>
-          <a href={t.blog} className={styles.logo} aria-label={t.label}>
+          <a href={t.home} className={styles.logo} aria-label="TicoSystem">
             <img src="/logo.webp" alt="TicoSystem" />
           </a>
           <div className={styles.headerActions}>

@@ -82,13 +82,37 @@
   color: var(--brand);
 }
 
+.policies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.4rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+
+.policies a {
+  color: var(--ink-soft);
+}
+
+.policies a:hover {
+  color: var(--brand);
+}
+
+.policies .policiesTitle {
+  font-weight: 600;
+  color: var(--ink);
+}
+
 .bottom {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--line);
   font-size: 0.825rem;
   color: var(--ink-soft);

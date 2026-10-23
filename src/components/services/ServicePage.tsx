@@ -31,7 +31,7 @@ export default function ServicePage({ lang, service }: { lang: Lang; service: Se
     "@type": "Service",
     name: c.name,
     description: c.metaDescription,
-    provider: { "@type": "Organization", name: "TicoSystem", legalName: "Công ty TNHH Giải pháp Công nghệ và Phần mềm TC", url: SITE },
+    provider: { "@type": "Organization", name: "TicoSystem", legalName: "Công ty TNHH Giải pháp Phần mềm và Công nghệ TC", url: SITE },
     areaServed: ["Worldwide", "Vietnam", "DACH"],
     url: `${SITE}${t.base}/${service.slug}`,
   };

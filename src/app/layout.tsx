@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Web Development, Custom Systems & AI Automation | TicoSystem",
   description:
-    "TicoSystem (TC Technology and Software Solutions Co., Ltd.) builds web apps, custom business systems, AI chatbots and automation for clients in Vietnam and Europe. Book a free 15-minute call.",
+    "TicoSystem (TC Technology and Software Solution Co., Ltd.) builds web apps, custom business systems, AI chatbots and automation for clients in Vietnam and Europe. Book a free 15-minute call.",
   alternates: {
     canonical: "/",
     languages: {

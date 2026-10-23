@@ -4,7 +4,7 @@ import HomePage from '@/components/home/HomePage';
 export const metadata: Metadata = {
   title: 'Lập Trình Web, Hệ Thống & Tự Động Hóa AI | TicoSystem',
   description:
-    'TicoSystem (Công ty TNHH Giải pháp Công nghệ và Phần mềm TC) xây dựng web app, hệ thống quản lý, chatbot AI và tự động hóa cho doanh nghiệp Việt Nam và châu Âu. Đặt lịch tư vấn miễn phí 15 phút.',
+    'TicoSystem (Công ty TNHH Giải pháp Phần mềm và Công nghệ TC) xây dựng web app, hệ thống quản lý, chatbot AI và tự động hóa cho doanh nghiệp Việt Nam và châu Âu. Đặt lịch tư vấn miễn phí 15 phút.',
   alternates: {
     canonical: '/vi',
     languages: {
