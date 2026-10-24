@@ -43,10 +43,7 @@ export const metadata: Metadata = {
     description:
       "We build web apps, custom business systems, AI chatbots and automation bots to European standards.",
     images: ["/og.png"],
-  },
-  icons: {
-    icon: "/browlogo.png",
-  },
+  }
 };
 
 const jsonLd = {
