@@ -16,9 +16,9 @@ const SITE_URL = "https://ticosystem.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Web Development, Custom Systems & AI Automation | TicoSystem",
+  title: "TicoSystem | Custom Software & Web App Development, Vietnam",
   description:
-    "Custom web apps, business systems, AI chatbots and automation, built in Vietnam to European standards. You own the code. Book a free 15-minute call.",
+    "Custom web apps, business management systems, AI chatbots and automation, built in Vietnam to European standards. Itemised quotes, you own the code.",
   alternates: {
     canonical: "/",
     languages: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "TicoSystem",
-    title: "Web Development, Custom Systems & AI Automation | TicoSystem",
+    title: "TicoSystem | Custom Software & Web App Development, Vietnam",
     description:
       "We build web apps, custom business systems, AI chatbots and automation bots to European standards.",
     locale: "en_US",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Web Development, Custom Systems & AI Automation | TicoSystem",
+    title: "TicoSystem | Custom Software & Web App Development, Vietnam",
     description:
       "We build web apps, custom business systems, AI chatbots and automation bots to European standards.",
     images: ["/og.png"],

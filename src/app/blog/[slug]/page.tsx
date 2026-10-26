@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import BlogShell from "@/components/blog/BlogShell";
 import PostArticle from "@/components/blog/PostArticle";
 import { getPostBySlug, getPublishedSlugs } from "@/lib/blog";
+import { getBlogSeo } from "@/lib/seo-meta";
 
 export const revalidate = 60;
 
@@ -22,9 +23,11 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug, "en");
   if (!post) return { title: "Article not found | TicoSystem" };
 
+  const seo = getBlogSeo(slug, "en");
+
   return {
-    title: `${post.title} | TicoSystem`,
-    description: post.excerpt,
+    title: seo?.title ?? `${post.title} | TicoSystem`,
+    description: seo?.description ?? post.excerpt,
     alternates: {
       canonical: `/blog/${slug}`,
       languages: {
