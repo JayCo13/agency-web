@@ -15,6 +15,16 @@ export const COMPANY = {
     vi: "Ô5/131A Đường Dương Văn Nốt, Khu phố Thanh Bình, Phường Gò Dầu, Tỉnh Tây Ninh, Việt Nam",
     en: "Ô5/131A Duong Van Not Street, Thanh Binh Quarter, Go Dau Ward, Tay Ninh Province, Vietnam",
   }, // Trụ sở chính theo GCN ĐKDN
+  // Người đại diện theo pháp luật và thông tin GCN ĐKDN (Nghị định 248/2026, Điều 4)
+  representative: { name: "Cổ Trịnh Hiền Tài", title: { vi: "Giám đốc", en: "Director" } },
+  registrationShort: {
+    vi: "cấp ngày 05/10/2026 tại Phòng Đăng ký kinh doanh - Sở Tài chính tỉnh Tây Ninh",
+    en: "issued on 5 Oct 2026 by the Business Registration Office, Tay Ninh Department of Finance",
+  },
+  registration: {
+    vi: "Giấy chứng nhận đăng ký doanh nghiệp số 3901395944 do Phòng Đăng ký kinh doanh - Sở Tài chính tỉnh Tây Ninh cấp lần đầu ngày 05/10/2026",
+    en: "Enterprise registration certificate No. 3901395944, first issued on 5 October 2026 by the Business Registration Office, Tay Ninh Department of Finance",
+  },
   email: "taicopgm@gmail.com",
   phoneDisplay: "+84 765 773 913",
   phoneE164: "+84765773913",
@@ -24,6 +34,10 @@ export const COMPANY = {
     "https://www.linkedin.com/in/c%E1%BB%95-tr%E1%BB%8Bnh-hi%E1%BB%81n-t%C3%A0i-7b7762384/",
   calendly: "https://calendly.com/taicopgm/30min",
   site: "https://ticosystem.com",
+  // "Đã thông báo Bộ Công Thương" badge in the footer. Swap `url` for the
+  // website's own confirmation link on online.gov.vn once it is approved.
+  // Keep `show: false` until the Ministry has confirmed the website.
+  moitBadge: { show: false, url: "https://online.gov.vn/nen-tang" },
   // Company bank account for the payment policy. Leave empty to say the
   // account is given in the quotation and contract instead.
   bank: { accountNumber: "", bankName: "", branch: "" },

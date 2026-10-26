@@ -17,8 +17,10 @@ const T = {
     blog: "Blog",
     book: "Đặt lịch tư vấn",
     taxId: "MST",
+    representative: "Người đại diện",
     rights: "All rights reserved.",
     policies: "Chính sách",
+    moit: "Đã thông báo Bộ Công Thương",
   },
   en: {
     tagline: "Custom software for growing businesses.",
@@ -30,8 +32,10 @@ const T = {
     blog: "Blog",
     book: "Book a call",
     taxId: "Tax ID",
+    representative: "Legal representative",
     rights: "All rights reserved.",
     policies: "Policies",
+    moit: "Registered with the Ministry of Industry and Trade of Vietnam",
   },
 } as const;
 
@@ -48,15 +52,31 @@ export default function SiteFooter({ lang }: { lang: Lang }) {
       <div className={styles.inner}>
         <div className={styles.grid}>
           <div className={styles.brandCol}>
-            <img src="/logo.webp" alt="TicoSystem" width={340} height={221} className={styles.logo} />
+            <div className={styles.logoRow}>
+              <img src="/logo.webp" alt="TicoSystem" width={340} height={221} className={styles.logo} />
+              {COMPANY.moitBadge.show && (
+                <a
+                  href={COMPANY.moitBadge.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.moit}
+                  aria-label={t.moit}
+                >
+                  <img src="/bo-cong-thuong.webp" alt={t.moit} width={712} height={237} />
+                </a>
+              )}
+            </div>
             <p className={styles.tagline}>{t.tagline}</p>
             <div className={styles.legal}>
               <strong>{COMPANY.legalNameVi}</strong>
               {COMPANY.taxId && (
                 <span>
-                  {t.taxId}: {COMPANY.taxId}
+                  {t.taxId}: {COMPANY.taxId}, {COMPANY.registrationShort[lang]}
                 </span>
               )}
+              <span>
+                {t.representative}: {COMPANY.representative.name}
+              </span>
               {address && <span>{address}</span>}
             </div>
           </div>

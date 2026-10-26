@@ -33,7 +33,7 @@ export interface Policy {
   en: PolicyContent;
 }
 
-export const POLICY_EFFECTIVE_DATE = { vi: "23/10/2026", en: "23 October 2026" };
+export const POLICY_EFFECTIVE_DATE = { vi: "26/10/2026", en: "26 October 2026" };
 
 const C = COMPANY;
 const addrVi = C.address.vi;
@@ -55,11 +55,15 @@ const contactEn = [
 const companyLinesVi = [
   `Đơn vị: ${C.legalNameVi}`,
   ...(C.taxId ? [`Mã số thuế: ${C.taxId}`] : []),
+  C.registration.vi,
+  `Người đại diện theo pháp luật: ${C.representative.name} (${C.representative.title.vi})`,
   ...contactVi,
 ];
 const companyLinesEn = [
   `Company: ${C.legalNameEn} (${C.legalNameVi})`,
   ...(C.taxId ? [`Tax ID: ${C.taxId}`] : []),
+  C.registration.en,
+  `Legal representative: ${C.representative.name} (${C.representative.title.en})`,
   ...contactEn,
 ];
 
@@ -85,6 +89,198 @@ const bankEn = C.bank.accountNumber
     ];
 
 export const POLICIES: Policy[] = [
+  // 0 ──────────────────────────────────────────── rights and obligations
+  // Article 6, Decree 248/2026/ND-CP. On a direct-sales platform the company
+  // is both the platform owner and the seller, so its duties are merged.
+  {
+    slug: "rights-obligations",
+    required: true,
+    vi: {
+      title: "Quyền và nghĩa vụ của các bên",
+      navTitle: "Quyền và nghĩa vụ các bên",
+      summary:
+        "Phân định quyền, nghĩa vụ và trách nhiệm của công ty (chủ quản website, đồng thời là người bán) và khách hàng (người mua) khi giao dịch qua ticosystem.com.",
+      sections: [
+        {
+          h: "1. Căn cứ và phạm vi áp dụng",
+          p: [
+            "Chính sách này được xây dựng theo Luật Thương mại điện tử và Điều 6 Nghị định số 248/2026/NĐ-CP ngày 30/6/2026 của Chính phủ quy định chi tiết một số điều của Luật Thương mại điện tử.",
+            "Chính sách áp dụng cho mọi giao dịch được thực hiện qua website ticosystem.com và các kênh liên hệ được công bố trên website (email, điện thoại, Zalo, WhatsApp, form liên hệ, công cụ đặt lịch).",
+          ],
+        },
+        {
+          h: "2. Các bên tham gia giao dịch",
+          ul: [
+            `Người bán, đồng thời là chủ quản nền tảng: ${C.legalNameVi}, mã số thuế ${C.taxId} (sau đây gọi là "công ty"). Công ty sở hữu, quản lý website ticosystem.com và trực tiếp cung cấp toàn bộ dịch vụ giới thiệu trên website. Website không có người bán nào khác.`,
+            `Người mua: tổ chức, cá nhân truy cập website, gửi yêu cầu tư vấn, đặt lịch hoặc ký hợp đồng sử dụng dịch vụ của công ty (sau đây gọi là "khách hàng").`,
+          ],
+        },
+        {
+          h: "3. Quyền của công ty (người bán, chủ quản nền tảng)",
+          ul: [
+            "Ban hành, công khai và tổ chức thực hiện các điều kiện giao dịch, chính sách dịch vụ trên website.",
+            "Quyết định dịch vụ cung cấp, giá bán và chương trình khuyến mại theo quy định của pháp luật; đăng ký, duy trì, tạm ngừng hoặc chấm dứt cung cấp một dịch vụ trên website.",
+            "Thu phí dịch vụ theo Chính sách giá đã công khai và hợp đồng đã ký; được khách hàng thanh toán đầy đủ, đúng hạn.",
+            "Yêu cầu khách hàng cung cấp thông tin, tài liệu và quyền truy cập cần thiết để thực hiện dịch vụ.",
+            "Từ chối, tạm ngừng hoặc chấm dứt cung cấp dịch vụ trong các trường hợp nêu tại mục 7.",
+          ],
+        },
+        {
+          h: "4. Nghĩa vụ và trách nhiệm của công ty",
+          ul: [
+            "Công bố đầy đủ, chính xác, rõ ràng thông tin về công ty, dịch vụ, giá, phương thức thanh toán, quy trình bàn giao, bảo hành, chấm dứt dịch vụ và hoàn tiền trước khi khách hàng giao kết hợp đồng.",
+            "Xây dựng và công khai tiêu chuẩn dịch vụ và quy trình làm việc (Điều kiện cung cấp dịch vụ; Chính sách cung cấp dịch vụ, chấm dứt dịch vụ và hoàn tiền).",
+            "Chỉ thu phí theo Chính sách giá đã công khai và hợp đồng; không thu bất kỳ khoản nào chưa được khách hàng đồng ý trước bằng văn bản hoặc email.",
+            "Khi có chương trình khuyến mại, công bố đầy đủ nội dung, thời gian và điều kiện áp dụng trước khi khách hàng đặt dịch vụ.",
+            "Cung cấp dịch vụ đúng chất lượng, phạm vi và tiến độ đã thỏa thuận; thực hiện bàn giao, bảo hành và hoàn tiền theo chính sách đã công bố.",
+            "Bảo đảm website vận hành an toàn, ổn định; áp dụng biện pháp bảo vệ bí mật kinh doanh và thông tin cá nhân của khách hàng theo Chính sách bảo mật thông tin.",
+            "Tiếp nhận và giải quyết yêu cầu, phản ánh, khiếu nại của khách hàng theo Chính sách tiếp nhận và giải quyết khiếu nại.",
+            "Không cung cấp dịch vụ thuộc ngành nghề bị cấm hoặc xâm phạm quyền sở hữu trí tuệ; giám sát, ngăn chặn việc sử dụng website và dịch vụ cho mục đích vi phạm pháp luật.",
+            "Thực hiện nghĩa vụ thuế, xuất hóa đơn theo quy định; phối hợp và cung cấp thông tin, dữ liệu khi cơ quan nhà nước có thẩm quyền yêu cầu.",
+          ],
+        },
+        {
+          h: "5. Quyền của khách hàng (người mua)",
+          ul: [
+            "Được bảo đảm quyền lợi theo pháp luật về bảo vệ quyền lợi người tiêu dùng.",
+            "Được cung cấp thông tin đầy đủ, chính xác về công ty, dịch vụ, giá và điều kiện giao dịch; được nhận báo giá bằng văn bản trước khi ký hợp đồng.",
+            "Được tự do lựa chọn dịch vụ, phạm vi công việc, phương thức thanh toán và hình thức bàn giao.",
+            "Được bảo vệ thông tin cá nhân; được xem, sửa, xóa dữ liệu theo Chính sách bảo mật thông tin.",
+            "Được nhận sản phẩm đúng hợp đồng, được bảo hành và hoàn tiền theo chính sách đã công bố; sở hữu mã nguồn, thiết kế và dữ liệu sau khi thanh toán đủ.",
+            "Được phản ánh, khiếu nại và được giải quyết theo Chính sách tiếp nhận và giải quyết khiếu nại; được yêu cầu cơ quan có thẩm quyền giải quyết tranh chấp.",
+          ],
+        },
+        {
+          h: "6. Nghĩa vụ và trách nhiệm của khách hàng",
+          ul: [
+            "Cung cấp thông tin cần thiết, chính xác và trung thực khi liên hệ, đặt lịch và ký hợp đồng; chịu trách nhiệm về thông tin đã cung cấp.",
+            "Thanh toán đầy đủ, đúng hạn theo hợp đồng và Chính sách thanh toán.",
+            "Phối hợp thực hiện hợp đồng: cung cấp nội dung, tài khoản, quyền truy cập; phản hồi và nghiệm thu đúng thời hạn đã thỏa thuận.",
+            "Bảo đảm có quyền sử dụng hợp pháp đối với nội dung, dữ liệu, hình ảnh, nhãn hiệu cung cấp cho công ty; chịu trách nhiệm về nội dung đăng tải trên hệ thống sau bàn giao.",
+            "Bảo mật tài khoản quản trị, mật khẩu được bàn giao.",
+            "Tuân thủ pháp luật và các điều kiện giao dịch trên website; không sử dụng website hoặc sản phẩm được bàn giao cho mục đích vi phạm pháp luật; không tấn công, phá hoại hoặc gửi thư rác qua website.",
+          ],
+        },
+        {
+          h: "7. Từ chối, tạm ngừng hoặc chấm dứt cung cấp dịch vụ",
+          p: [
+            "Website không yêu cầu khách hàng tạo tài khoản. Công ty có quyền từ chối tiếp nhận yêu cầu, tạm ngừng hoặc chấm dứt cung cấp dịch vụ cho khách hàng trong các trường hợp sau:",
+          ],
+          ul: [
+            "Khách hàng cung cấp thông tin sai sự thật hoặc giả mạo tổ chức, cá nhân khác.",
+            "Yêu cầu thuộc danh mục công ty không nhận làm (mục 2, Điều kiện và giới hạn cung cấp dịch vụ) hoặc nhằm mục đích vi phạm pháp luật.",
+            "Khách hàng vi phạm nghĩa vụ thanh toán hoặc nghĩa vụ phối hợp theo hợp đồng.",
+            "Khách hàng có hành vi tấn công, phá hoại, gửi thư rác hoặc can thiệp trái phép vào website.",
+            "Theo yêu cầu của cơ quan nhà nước có thẩm quyền.",
+          ],
+          note: "Việc tạm ngừng, chấm dứt hợp đồng và hoàn tiền được thực hiện theo Chính sách cung cấp dịch vụ, chấm dứt dịch vụ và hoàn tiền.",
+        },
+        {
+          h: "8. Phân định trách nhiệm",
+          ul: [
+            "Công ty chịu trách nhiệm về: chất lượng, phạm vi và tiến độ dịch vụ; lỗi trong mã nguồn do công ty viết trong thời hạn bảo hành; tính chính xác của thông tin công bố trên website; bảo mật dữ liệu khách hàng trong phạm vi công ty quản lý.",
+            "Khách hàng chịu trách nhiệm về: tính chính xác của thông tin, tài liệu đã cung cấp; quyền sử dụng hợp pháp đối với nội dung cung cấp; nội dung đăng tải và việc sử dụng, chỉnh sửa hệ thống sau bàn giao; việc thanh toán.",
+            "Sự cố do nhà cung cấp bên thứ ba (tên miền, hosting, API, cổng thanh toán) hoặc sự kiện bất khả kháng: các bên phối hợp khắc phục; trách nhiệm được xác định theo hợp đồng và quy định của pháp luật.",
+            "Tranh chấp được giải quyết trước hết bằng thương lượng, hòa giải. Nếu không đạt được thỏa thuận, mỗi bên có quyền đưa tranh chấp ra Tòa án có thẩm quyền tại Việt Nam.",
+          ],
+        },
+        { h: "9. Thông tin người bán", ul: companyLinesVi },
+      ],
+    },
+    en: {
+      title: "Rights and Obligations of the Parties",
+      navTitle: "Rights & obligations",
+      summary:
+        "The rights, obligations and responsibilities of the company (website owner and seller) and the client (buyer) in transactions made through ticosystem.com.",
+      sections: [
+        {
+          h: "1. Legal basis and scope",
+          p: [
+            "This policy follows the Law on E-commerce and Article 6 of Government Decree No. 248/2026/ND-CP of 30 June 2026 detailing a number of articles of the Law on E-commerce.",
+            "It applies to every transaction made through ticosystem.com and the contact channels published on the website (email, phone, Zalo, WhatsApp, the contact form and the booking tool).",
+          ],
+        },
+        {
+          h: "2. The parties",
+          ul: [
+            `Seller and platform owner: ${C.legalNameEn} (${C.legalNameVi}), tax ID ${C.taxId} ("the company"). The company owns and operates ticosystem.com and directly provides every service presented on it. There are no other sellers on the website.`,
+            `Buyer: any organisation or individual who visits the website, sends an enquiry, books a call or signs a contract for the company's services ("the client").`,
+          ],
+        },
+        {
+          h: "3. Rights of the company (seller and platform owner)",
+          ul: [
+            "To issue, publish and apply the transaction conditions and service policies on the website.",
+            "To decide which services it offers, their prices and any promotions in line with the law, and to list, maintain, suspend or withdraw a service on the website.",
+            "To charge fees under the published Pricing Policy and the signed contract, and to be paid in full and on time.",
+            "To ask the client for the information, materials and access needed to deliver the service.",
+            "To refuse, suspend or end a service in the cases listed in section 7.",
+          ],
+        },
+        {
+          h: "4. Obligations and responsibilities of the company",
+          ul: [
+            "To publish complete, accurate and clear information about the company, its services, prices, payment methods, delivery, warranty, termination and refunds before the client signs a contract.",
+            "To set and publish its service standards and working process (Service Conditions; Service Delivery, Termination and Refund Policy).",
+            "To charge only under the published Pricing Policy and the contract, and never charge anything the client has not agreed to in writing or by email.",
+            "When a promotion runs, to publish its content, period and conditions before the client orders.",
+            "To deliver the service at the agreed quality, scope and timeline, and to hand over, provide warranty and refund under the published policies.",
+            "To keep the website safe and stable, and to protect the client's trade secrets and personal data under the Privacy Policy.",
+            "To receive and resolve client requests, feedback and complaints under the Complaints Handling Policy.",
+            "Not to provide prohibited services or infringe intellectual property, and to monitor and prevent the use of the website and services for unlawful purposes.",
+            "To meet its tax and invoicing obligations, and to cooperate with and provide information to competent authorities on request.",
+          ],
+        },
+        {
+          h: "5. Rights of the client (buyer)",
+          ul: [
+            "To have their interests protected under consumer protection law.",
+            "To receive complete and accurate information about the company, its services, prices and transaction conditions, and a written quotation before signing.",
+            "To freely choose the services, scope of work, payment method and form of delivery.",
+            "To have their personal data protected, and to view, correct or delete it under the Privacy Policy.",
+            "To receive work that matches the contract, warranty and refunds under the published policies, and to own the source code, designs and data once paid in full.",
+            "To raise feedback and complaints and have them resolved under the Complaints Handling Policy, and to ask a competent authority to resolve a dispute.",
+          ],
+        },
+        {
+          h: "6. Obligations and responsibilities of the client",
+          ul: [
+            "To provide necessary, accurate and truthful information when making contact, booking or signing a contract, and to be responsible for it.",
+            "To pay in full and on time under the contract and the Payment Policy.",
+            "To cooperate in performing the contract: supply content, accounts and access, and give feedback and acceptance within the agreed time.",
+            "To hold the right to use the content, data, images and trademarks supplied to the company, and to be responsible for content published on the system after handover.",
+            "To keep the admin accounts and passwords handed over secure.",
+            "To comply with the law and the website's transaction conditions; not to use the website or the delivered product for unlawful purposes; not to attack, disrupt or send spam through the website.",
+          ],
+        },
+        {
+          h: "7. Refusing, suspending or ending a service",
+          p: [
+            "The website does not require clients to create an account. The company may refuse a request, or suspend or end a service, when:",
+          ],
+          ul: [
+            "The client gives false information or impersonates another organisation or person.",
+            "The request falls under the work we do not take on (section 2 of the Service Conditions) or serves an unlawful purpose.",
+            "The client breaches their payment or cooperation obligations under the contract.",
+            "The client attacks, disrupts, spams or tampers with the website.",
+            "A competent authority requires it.",
+          ],
+          note: "Suspension, termination and refunds follow the Service Delivery, Termination and Refund Policy.",
+        },
+        {
+          h: "8. Allocation of responsibility",
+          ul: [
+            "The company is responsible for: the quality, scope and timeline of the service; faults in the code it wrote during the warranty period; the accuracy of information published on the website; and the security of client data under its control.",
+            "The client is responsible for: the accuracy of the information and materials supplied; the right to use the content supplied; content published and any use or modification of the system after handover; and payment.",
+            "Incidents caused by third-party providers (domains, hosting, APIs, payment gateways) or force majeure: both parties work together to resolve them, and responsibility is determined by the contract and the law.",
+            "Disputes are first resolved through negotiation and mediation. If no agreement is reached, either party may bring the dispute to a competent court in Vietnam.",
+          ],
+        },
+        { h: "9. Seller information", ul: companyLinesEn },
+      ],
+    },
+  },
+
   // 1 ─────────────────────────────────────────────────────────────── privacy
   {
     slug: "privacy",
