@@ -36,8 +36,13 @@ export const COMPANY = {
   site: "https://ticosystem.com",
   // "Đã thông báo Bộ Công Thương" badge in the footer. Swap `url` for the
   // website's own confirmation link on online.gov.vn once it is approved.
-  // Keep `show: false` until the Ministry has confirmed the website.
-  moitBadge: { show: false, url: "https://online.gov.vn/nen-tang" },
+  // Confirmed by the Ministry of Industry and Trade; link and logo come from
+  // the embed code issued on online.gov.vn.
+  moitBadge: {
+    show: true,
+    url: "https://online.gov.vn/nen-tang/2a56a884-fcc1-4085-9d12-5e0c828d29ef",
+    img: "https://fileserver.online.gov.vn/uploads/Resources/iconxacnhan/DaThongBao.png",
+  },
   // Company bank account for the payment policy. Leave empty to say the
   // account is given in the quotation and contract instead.
   bank: { accountNumber: "", bankName: "", branch: "" },

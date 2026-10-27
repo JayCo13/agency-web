@@ -60,9 +60,9 @@ export default function SiteFooter({ lang }: { lang: Lang }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.moit}
-                  aria-label={t.moit}
+                  title="Đã xác nhận với Bộ Công Thương"
                 >
-                  <img src="/bo-cong-thuong.webp" alt={t.moit} width={712} height={237} />
+                  <img src={COMPANY.moitBadge.img} alt="Đã xác nhận" width={230} height={86} />
                 </a>
               )}
             </div>
