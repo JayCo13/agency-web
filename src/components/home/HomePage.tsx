@@ -96,7 +96,6 @@ export default function HomePage({ lang }: { lang: Lang }) {
   const t = HOME[lang];
   const address = COMPANY.address[lang];
   const companyName = lang === "vi" ? COMPANY.legalNameVi : COMPANY.shortNameEn;
-  const taxLabel = lang === "vi" ? "MST" : "Tax ID";
 
   const faqLd = {
     "@context": "https://schema.org",
@@ -139,7 +138,6 @@ export default function HomePage({ lang }: { lang: Lang }) {
                     <Building />
                   </span>
                   {t.hero.badge}
-                  {COMPANY.taxId ? `, ${taxLabel} ${COMPANY.taxId}` : ""}
                 </p>
                 <h1 className={styles.heroTitle}>
                   {t.hero.title.split(" ").map((w, i, arr) => (
