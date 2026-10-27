@@ -16,6 +16,8 @@ export interface ServiceExtraLang {
   example?: { client: string; place: string; text: string; href?: string };
   guide: { title: string; href: string };
   faqs: { q: string; a: string }[];
+  /** Optional longer sections rendered after the delivered project. */
+  sections?: { title: string; paragraphs: string[] }[];
 }
 
 const AFTER_LAUNCH = {
@@ -43,6 +45,35 @@ export const SERVICE_EXTRA: Record<string, Record<Lang, ServiceExtraLang>> = {
         { q: "How much does a custom web app cost?", a: "Small web apps and internal tools usually start at $3,000–$7,000, larger platforms from $10,000. Scope, user roles and integrations move the price up or down." },
         { q: "Will we see progress before launch?", a: "Yes. We build in short stages and you try a working version at the end of each one, so your feedback arrives early instead of after launch." },
         AFTER_LAUNCH.en,
+        { q: "Can you take over an app someone else built?", a: "Often, yes. We first read the code and the hosting setup, then tell you plainly whether it is cheaper to extend what you have or to rebuild the parts that hold you back." },
+        { q: "Do you work with clients outside Vietnam?", a: "Yes. We work remotely in English with clients in Europe, the US and Asia, with calls scheduled in your working hours and written updates after every stage." },
+      ],
+      sections: [
+        {
+          title: "What moves the price up or down",
+          paragraphs: [
+            "Most of the cost of a custom web app comes from a handful of decisions, so it helps to know them before you ask for a quote. The first is the number of user roles. An app used only by your staff is simpler than one where staff, customers and partners each see different screens and data. The second is integrations: every system the app has to talk to, such as your CRM, accounting software, payment gateway or email tool, adds work for building, testing and handling errors when that system is down.",
+            "The third is your existing data. Moving years of spreadsheets into a clean database takes time, especially when the same customer is written three different ways. The fourth is reporting: a few fixed reports are quick, while flexible dashboards with filters and exports take longer. Finally, rules and edge cases, such as approvals, discounts or stock that must never go negative, are where most of the real thinking happens. We list each of these in the quote, so you can move items to a later stage and keep the first release inside your budget.",
+          ],
+        },
+        {
+          title: "Custom web app or off-the-shelf software?",
+          paragraphs: [
+            "Off-the-shelf software is the right choice when your process is standard and a monthly subscription covers it. A custom web app makes sense when your team keeps working around a tool, copies data between systems by hand, or pays for many seats while using a small part of the product. In those cases a focused app that does exactly your workflow often costs less over a few years than licences plus the hours lost to workarounds. If you are not sure, we will tell you in the first call, even when the answer is a ready-made tool.",
+          ],
+        },
+        {
+          title: "What we need from you",
+          paragraphs: [
+            "A good project needs one person on your side who knows the workflow and can make decisions, plus a few hours a week from them during the build. Before the first call, it helps to collect the spreadsheets, forms or screenshots your team uses today and a short list of what goes wrong most often. That material lets us give you a realistic scope and price quickly instead of guessing.",
+          ],
+        },
+        {
+          title: "Security and ownership",
+          paragraphs: [
+            "Every app we build has role-based access, so each person only sees and changes what their job requires. Sensitive actions are logged, and the app runs over HTTPS. When the project ends you receive the full source code, the database and the documentation needed to run it, so you are free to keep working with us or hand it to another team.",
+          ],
+        },
       ],
     },
     vi: {
@@ -59,6 +90,35 @@ export const SERVICE_EXTRA: Record<string, Record<Lang, ServiceExtraLang>> = {
         { q: "Làm web app theo yêu cầu giá bao nhiêu?", a: "Web app và công cụ nội bộ nhỏ thường từ 20–40 triệu đồng, nền tảng lớn hơn từ 60 triệu đồng. Phạm vi, số vai trò và số tích hợp quyết định giá cao hay thấp." },
         { q: "Có xem được tiến độ trước khi ra mắt không?", a: "Có. Chúng tôi làm theo từng giai đoạn ngắn, cuối mỗi giai đoạn bạn dùng thử bản chạy thật, nên góp ý đến sớm thay vì sau khi ra mắt." },
         AFTER_LAUNCH.vi,
+        { q: "Có nhận tiếp quản web app do bên khác làm không?", a: "Thường là có. Chúng tôi đọc mã nguồn và cách triển khai trước, rồi nói rõ nên phát triển tiếp trên nền cũ hay làm lại những phần đang cản trở bạn, phương án nào rẻ hơn." },
+        { q: "Doanh nghiệp ở tỉnh khác có làm việc được không?", a: "Được. Chúng tôi làm việc trực tuyến qua cuộc gọi video và tin nhắn, gửi bản tóm tắt bằng văn bản sau mỗi giai đoạn, nên khách ở bất kỳ tỉnh thành nào cũng theo dõi được tiến độ." },
+      ],
+      sections: [
+        {
+          title: "Điều gì làm giá cao hay thấp",
+          paragraphs: [
+            "Phần lớn chi phí của một web app theo yêu cầu đến từ vài quyết định, nên biết trước chúng sẽ giúp bạn đọc báo giá dễ hơn. Thứ nhất là số vai trò người dùng. Một app chỉ nhân viên nội bộ dùng sẽ đơn giản hơn nhiều so với app mà nhân viên, khách hàng và đối tác mỗi bên thấy một màn hình và dữ liệu khác nhau. Thứ hai là tích hợp: mỗi hệ thống app cần kết nối, như CRM, phần mềm kế toán, cổng thanh toán hay công cụ gửi email, đều thêm phần việc xây dựng, kiểm thử và xử lý khi hệ thống đó gặp sự cố.",
+            "Thứ ba là dữ liệu cũ. Chuyển nhiều năm dữ liệu từ Excel sang một cơ sở dữ liệu sạch tốn thời gian, nhất là khi cùng một khách hàng được ghi theo ba cách khác nhau. Thứ tư là báo cáo: vài báo cáo cố định làm nhanh, còn dashboard linh hoạt có bộ lọc và xuất file thì lâu hơn. Cuối cùng là quy tắc và tình huống đặc biệt, như quy trình duyệt, chiết khấu hay tồn kho không được âm; đây là chỗ cần suy nghĩ kỹ nhất. Chúng tôi ghi rõ từng mục trong báo giá để bạn có thể dời bớt sang giai đoạn sau và giữ bản đầu tiên trong ngân sách.",
+          ],
+        },
+        {
+          title: "Web app theo yêu cầu hay phần mềm có sẵn?",
+          paragraphs: [
+            "Phần mềm có sẵn là lựa chọn đúng khi quy trình của bạn giống số đông và một gói thuê bao hằng tháng đã đáp ứng đủ. Web app theo yêu cầu đáng làm khi team bạn liên tục phải lách quanh phần mềm, chép dữ liệu tay giữa các hệ thống, hoặc trả phí cho nhiều tài khoản mà chỉ dùng một phần nhỏ. Khi đó, một app tập trung đúng quy trình của bạn thường rẻ hơn sau vài năm so với tiền bản quyền cộng số giờ mất vì làm vòng. Nếu chưa chắc, chúng tôi sẽ nói thẳng ngay trong cuộc gọi đầu, kể cả khi câu trả lời là một phần mềm có sẵn.",
+          ],
+        },
+        {
+          title: "Bạn cần chuẩn bị gì",
+          paragraphs: [
+            "Một dự án suôn sẻ cần một người bên bạn hiểu quy trình và có quyền quyết định, dành vài giờ mỗi tuần trong lúc xây dựng. Trước cuộc gọi đầu tiên, bạn nên gom lại các file Excel, biểu mẫu hoặc ảnh chụp màn hình team đang dùng, kèm danh sách ngắn những chỗ hay sai sót nhất. Những tài liệu đó giúp chúng tôi đưa ra phạm vi và giá sát thực tế nhanh hơn, thay vì phải đoán.",
+          ],
+        },
+        {
+          title: "Bảo mật và quyền sở hữu",
+          paragraphs: [
+            "Mọi app chúng tôi làm đều có phân quyền theo vai trò, mỗi người chỉ xem và sửa đúng phần việc của mình. Các thao tác quan trọng được ghi nhật ký và app chạy qua HTTPS. Khi kết thúc dự án, bạn nhận toàn bộ mã nguồn, cơ sở dữ liệu và tài liệu vận hành, nên bạn hoàn toàn tự do tiếp tục làm với chúng tôi hoặc giao cho đội khác.",
+          ],
+        },
       ],
     },
   },

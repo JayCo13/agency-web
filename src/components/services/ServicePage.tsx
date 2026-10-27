@@ -135,6 +135,15 @@ export default function ServicePage({ lang, service }: { lang: Lang; service: Se
             </>
           )}
 
+          {extra?.sections?.map((sec) => (
+            <section key={sec.title}>
+              <h2 className={styles.h2}>{sec.title}</h2>
+              {sec.paragraphs.map((para) => (
+                <p key={para.slice(0, 40)} className={styles.intro}>{para}</p>
+              ))}
+            </section>
+          ))}
+
           <h2 className={styles.h2}>{t.whoTitle}</h2>
           <ul className={styles.whoList}>
             {c.whoFor.map((w) => <li key={w}>{w}</li>)}
