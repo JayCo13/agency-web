@@ -28,6 +28,8 @@ export interface LocalizedPost {
   author: string;
   tags: string[];
   publishedAt: string | null;
+  /** Languages that have their own written content (not a fallback). */
+  langs: Lang[];
 }
 
 const TABLE = "tico_blog_posts";
@@ -90,7 +92,34 @@ function localize(row: BlogPostRow, lang: Lang): LocalizedPost {
     author: row.author ?? "Tyler Tai Co",
     tags: row.tags ?? [],
     publishedAt: row.published_at,
+    langs: (["en", "vi"] as const).filter((l) =>
+      Boolean(l === "en" ? row.content_en?.trim() : row.content_vi?.trim()),
+    ),
   };
+}
+
+const SITE_URL = "https://ticosystem.com";
+
+/** Path of a post in one language. */
+export function postPath(slug: string, lang: Lang): string {
+  return lang === "vi" ? `/vi/blog/${slug}` : `/blog/${slug}`;
+}
+
+/**
+ * hreflang map for a post, listing only the languages that really exist, so a
+ * post written in one language is not advertised as a duplicate in the other.
+ * Pass `absolute` for the sitemap, which needs full URLs.
+ */
+export function postLanguages(
+  post: Pick<LocalizedPost, "slug" | "langs">,
+  absolute = false,
+): Record<string, string> {
+  const base = absolute ? SITE_URL : "";
+  const out: Record<string, string> = {};
+  for (const l of post.langs) out[l] = base + postPath(post.slug, l);
+  const def = post.langs.includes("en") ? "en" : post.langs[0];
+  if (def) out["x-default"] = base + postPath(post.slug, def);
+  return out;
 }
 
 /** All published posts, newest first, resolved to `lang`. */

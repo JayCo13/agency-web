@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BlogShell from "@/components/blog/BlogShell";
 import PostArticle from "@/components/blog/PostArticle";
-import { getPostBySlug, getPublishedSlugs } from "@/lib/blog";
+import { getPostBySlug, getPublishedSlugs, postLanguages, postPath } from "@/lib/blog";
 import { getBlogSeo } from "@/lib/seo-meta";
 
 export const revalidate = 60;
@@ -24,17 +24,16 @@ export async function generateMetadata({
   if (!post) return { title: "Article not found | TicoSystem" };
 
   const seo = getBlogSeo(slug, "en");
+  const translated = post.langs.includes("en");
 
   return {
     title: seo?.title ?? `${post.title} | TicoSystem`,
     description: seo?.description ?? post.excerpt,
+    // A post with no EN text renders the VI fallback here, so point
+    // the canonical at the original language instead of claiming a duplicate.
     alternates: {
-      canonical: `/blog/${slug}`,
-      languages: {
-        en: `/blog/${slug}`,
-        vi: `/vi/blog/${slug}`,
-        "x-default": `/blog/${slug}`,
-      },
+      canonical: translated ? postPath(slug, "en") : postPath(slug, "vi"),
+      languages: postLanguages(post),
     },
     openGraph: {
       type: "article",

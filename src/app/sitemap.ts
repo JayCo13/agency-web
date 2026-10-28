@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getPublishedPosts } from "@/lib/blog";
+import { getPublishedPosts, postLanguages } from "@/lib/blog";
 import { allServiceSlugs } from "@/lib/services";
 import { allPolicySlugs } from "@/lib/policies";
 
@@ -70,15 +70,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getPublishedPosts("en");
   const postEntries: MetadataRoute.Sitemap = posts.flatMap((post) => {
     const lastModified = post.publishedAt ? new Date(post.publishedAt) : now;
-    const languages = {
-      en: `${BASE_URL}/blog/${post.slug}`,
-      vi: `${BASE_URL}/vi/blog/${post.slug}`,
-      "x-default": `${BASE_URL}/blog/${post.slug}`,
-    };
-    return [
-      { url: languages.en, lastModified, changeFrequency: "monthly" as const, priority: 0.6, alternates: { languages } },
-      { url: languages.vi, lastModified, changeFrequency: "monthly" as const, priority: 0.6, alternates: { languages } },
-    ];
+    // Only list the language versions that have their own text; a fallback
+    // copy (e.g. a VI-only post at /blog/<slug>) is canonicalised away.
+    const languages = postLanguages(post, true);
+    return post.langs.map((lang) => ({
+      url: languages[lang],
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: { languages },
+    }));
   });
 
   // Policy pages (EN + VI alternates).
