@@ -118,6 +118,18 @@ export default function ServicePage({ lang, service }: { lang: Lang; service: Se
             </>
           )}
 
+          {service.slug === "ecommerce" && (
+            <div className={styles.example}>
+              <h3>{lang === "vi" ? "Cần mở shop nhanh hơn?" : "Need to launch sooner?"}</h3>
+              <p>
+                {lang === "vi"
+                  ? "Bắt đầu từ một mẫu có sẵn cho quán ăn, nội thất, mẹ và bé, spa và salon có đặt lịch, nha khoa, web công ty dịch vụ, thời trang, mỹ phẩm, đồ công nghệ hoặc đồ gia dụng. Mẫu nào cũng chạy thật, bạn bấm thử và đặt hàng thử được ngay."
+                  : "Start from a ready-made template for food, furniture, baby goods, salons with booking, dental clinics, company websites, fashion, beauty, electronics or homeware. Each one is a live store you can browse and test-order right now."}
+              </p>
+              <a href={lang === "vi" ? "/vi/templates" : "/templates"}>{lang === "vi" ? "Xem mẫu web bán hàng" : "See the store templates"} →</a>
+            </div>
+          )}
+
           {extra?.example && (
             <>
               <h2 className={styles.h2}>{t.exampleTitle}</h2>

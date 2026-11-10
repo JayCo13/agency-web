@@ -14,6 +14,7 @@ const T = {
     contact: "Liên hệ",
     about: "Về chúng tôi",
     work: "Dự án",
+    templates: "Mẫu web bán hàng",
     blog: "Blog",
     book: "Đặt lịch tư vấn",
     taxId: "MST",
@@ -29,6 +30,7 @@ const T = {
     contact: "Contact",
     about: "About",
     work: "Work",
+    templates: "Store templates",
     blog: "Blog",
     book: "Book a call",
     taxId: "Tax ID",
@@ -97,6 +99,7 @@ export default function SiteFooter({ lang }: { lang: Lang }) {
             <ul className={styles.list}>
               <li><a href={`${home}/#about`}>{t.about}</a></li>
               <li><a href={`${home}/#work`}>{t.work}</a></li>
+              <li><a href={lang === "vi" ? "/vi/templates" : "/templates"}>{t.templates}</a></li>
               <li><a href={lang === "vi" ? "/vi/blog" : "/blog"}>{t.blog}</a></li>
               <li><a href={`${home}/#contact`}>{t.book}</a></li>
             </ul>

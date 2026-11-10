@@ -12,6 +12,7 @@ function setLocale(l: Lang) {
 interface NavLabels {
   work: string;
   services: string;
+  templates: string;
   process: string;
   about: string;
   faq: string;
@@ -51,6 +52,7 @@ export default function SiteHeader({ lang, nav }: { lang: Lang; nav: NavLabels }
   const links = [
     { href: "#work", label: nav.work },
     { href: "#services", label: nav.services },
+    { href: lang === "vi" ? "/vi/templates" : "/templates", label: nav.templates },
     { href: "#process", label: nav.process },
     { href: "#about", label: nav.about },
     { href: lang === "vi" ? "/vi/blog" : "/blog", label: nav.blog },

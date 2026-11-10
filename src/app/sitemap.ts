@@ -97,5 +97,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  return [...staticEntries, ...serviceEntries, ...policyEntries, ...postEntries];
+  // Trang Mẫu giao diện (trang xem thử từng mẫu để noindex nên không đưa vào)
+  const templateLanguages = { en: `${BASE_URL}/templates`, vi: `${BASE_URL}/vi/templates`, "x-default": `${BASE_URL}/templates` };
+  const templateEntries: MetadataRoute.Sitemap = [
+    { url: templateLanguages.en, lastModified: now, changeFrequency: "monthly", priority: 0.8, alternates: { languages: templateLanguages } },
+    { url: templateLanguages.vi, lastModified: now, changeFrequency: "monthly", priority: 0.8, alternates: { languages: templateLanguages } },
+  ];
+
+  return [...staticEntries, ...serviceEntries, ...templateEntries, ...policyEntries, ...postEntries];
 }

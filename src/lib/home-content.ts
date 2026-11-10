@@ -16,7 +16,7 @@ export interface CaseStudy {
 }
 
 interface HomeCopy {
-  nav: { work: string; services: string; process: string; about: string; faq: string; blog: string; cta: string; menu: string };
+  nav: { work: string; services: string; templates: string; process: string; about: string; faq: string; blog: string; cta: string; menu: string };
   hero: {
     badge: string;
     title: string;
@@ -73,7 +73,7 @@ interface HomeCopy {
 
 export const HOME: Record<Lang, HomeCopy> = {
   vi: {
-    nav: { work: "Dự án", services: "Dịch vụ", process: "Quy trình", about: "Về chúng tôi", faq: "Hỏi đáp", blog: "Blog", cta: "Đặt lịch tư vấn", menu: "Mở menu" },
+    nav: { work: "Dự án", services: "Dịch vụ", templates: "Mẫu web", process: "Quy trình", about: "Về chúng tôi", faq: "Hỏi đáp", blog: "Blog", cta: "Đặt lịch tư vấn", menu: "Mở menu" },
     hero: {
       badge: "Công ty TNHH Giải pháp Phần mềm và Công nghệ TC",
       title: "Tự động hóa công việc theo cách doanh nghiệp bạn mong muốn",
@@ -256,7 +256,7 @@ export const HOME: Record<Lang, HomeCopy> = {
     ],
   },
   en: {
-    nav: { work: "Work", services: "Services", process: "Process", about: "About", faq: "FAQ", blog: "Blog", cta: "Book a call", menu: "Open menu" },
+    nav: { work: "Work", services: "Services", templates: "Templates", process: "Process", about: "About", faq: "FAQ", blog: "Blog", cta: "Book a call", menu: "Open menu" },
     hero: {
       badge: "TC Technology and Software Solution Co., Ltd.",
       title: "Software that runs the way your business does",
