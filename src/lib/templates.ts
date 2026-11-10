@@ -234,6 +234,21 @@ const ALL_TEMPLATES: ShopTemplate[] = [
     },
   },
   {
+    key: "tattoobold",
+    slug: "chusa",
+    shopName: "Chu Sa Tattoo",
+    vi: {
+      industry: "Tiệm xăm phong cách đường phố",
+      blurb: "Tên tiệm in khổng lồ trên ảnh tiệm, mẫu xăm bay xoay 3D qua màn hình khi cuộn, chữ đổi sang màu đỏ son theo từng chữ. Bảng giờ mở cửa tự báo tiệm đang mở hay đã đóng, khách chọn mẫu rồi đặt lịch.",
+      features: ["Giờ mở cửa báo đang mở / đã đóng theo giờ thật", "Mẫu đánh số kèm giá, thời gian, lọc theo phong cách", "Đặt lịch theo giờ trống, báo về app và email"],
+    },
+    en: {
+      industry: "Street-style tattoo studios",
+      blurb: "The studio name runs huge across a photo of the shop, flash designs fly and turn in 3D as you scroll, and text inks into vermilion word by word. The opening-hours card shows whether the studio is open right now, and visitors pick a design and book.",
+      features: ["Live open / closed status from real opening hours", "Numbered designs with price and time, filtered by style", "Booking by open time slots, sent to the app and email"],
+    },
+  },
+  {
     key: "company",
     slug: "soxanh",
     shopName: "Sổ Xanh Kế Toán",
