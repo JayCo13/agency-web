@@ -219,6 +219,21 @@ const ALL_TEMPLATES: ShopTemplate[] = [
     },
   },
   {
+    key: "tattoo",
+    slug: "kimmuc",
+    shopName: "Kim Mực Tattoo",
+    vi: {
+      industry: "Tiệm xăm, studio xăm hình",
+      blurb: "Ảnh hiện thành nét stencil tím rồi được \"xăm\" sang màu khi cuộn tới, mẫu flash đánh số như tờ mẫu treo tường. Khách kéo thước xem giá theo cỡ hình rồi đặt lịch tư vấn.",
+      features: ["Thước ước tính giá theo cỡ hình (cm)", "Tờ flash đánh số, lọc theo phong cách", "Đặt lịch theo giờ trống, báo về app và email"],
+    },
+    en: {
+      industry: "Tattoo studios",
+      blurb: "Photos appear as violet stencil lines and ink into full colour as you scroll, and flash designs are numbered like a sheet on the wall. Visitors drag a ruler to see the price for their size, then book a consultation.",
+      features: ["Price estimator by tattoo size (cm)", "Numbered flash sheet, filtered by style", "Booking by open time slots, sent to the app and email"],
+    },
+  },
+  {
     key: "company",
     slug: "soxanh",
     shopName: "Sổ Xanh Kế Toán",
