@@ -249,6 +249,21 @@ const ALL_TEMPLATES: ShopTemplate[] = [
     },
   },
   {
+    key: "tattoolotus",
+    slug: "hosen",
+    shopName: "Hồ Sen Tattoo",
+    vi: {
+      industry: "Tiệm xăm, xỏ khuyên",
+      blurb: "Ảnh trong khung cánh sen, mỗi lần chuyển trang có hoa sen xoay rồi phóng xuyên màn hình. Menu toàn màn hình hai nửa, vòng chữ quay theo cuộn, tường mẫu lọc theo phong cách rồi đặt lịch.",
+      features: ["Hiệu ứng chuyển trang hoa sen", "Tường mẫu lọc ngay theo phong cách", "Đặt lịch theo giờ trống, báo về app và email"],
+    },
+    en: {
+      industry: "Tattoo & piercing studios",
+      blurb: "Photos sit in lotus-petal frames, and every page change spins a lotus that zooms through the screen. A split full-screen menu, a ring of text that turns as you scroll, and a design wall filtered by style, then booking.",
+      features: ["Lotus page-transition effect", "Design wall with instant style filters", "Booking by open time slots, sent to the app and email"],
+    },
+  },
+  {
     key: "company",
     slug: "soxanh",
     shopName: "Sổ Xanh Kế Toán",
