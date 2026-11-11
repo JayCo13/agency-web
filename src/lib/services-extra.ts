@@ -169,6 +169,37 @@ export const SERVICE_EXTRA: Record<string, Record<Lang, ServiceExtraLang>> = {
         { q: "How much does a custom AI chatbot cost?", a: "The build usually starts at $1,500–$4,000, depending on knowledge sources, channels and integrations." },
         { q: "What does it cost to run after launch?", a: "AI usage is billed per conversation, so it follows your traffic. Plan for maintenance of about 15–20% of the build cost per year." },
         AFTER_LAUNCH.en,
+        { q: "Will the chatbot make up answers?", a: "We limit it to your own documents and tell it to say it does not know when the answer is not there. Questions it cannot answer are handed to a person with the conversation attached." },
+        { q: "Which channels can it run on?", a: "Your website first, and on request Facebook Messenger, Zalo OA or WhatsApp. Every extra channel is listed separately in the quote." },
+        { q: "How long does it take to build?", a: "A website chatbot that answers from your documents usually takes two to four weeks, including a test round on real questions from your team." },
+        { q: "Can it speak both Vietnamese and English?", a: "Yes. The bot replies in the visitor's language, and we test both languages on your real questions before launch." },
+      ],
+      sections: [
+        {
+          title: "What moves the price of a chatbot",
+          paragraphs: [
+            "The cost of a custom chatbot depends less on the AI model and more on what it has to know and connect to. The first factor is your knowledge sources: a single FAQ page is quick to prepare, while hundreds of product pages, PDFs and price lists need cleaning and structuring so the bot finds the right answer. The second is channels. A chatbot on your website is the starting point; adding Messenger, Zalo or WhatsApp means more testing and more places where conversations have to be logged.",
+            "The third factor is integrations. A bot that only answers questions is simpler than one that creates a lead in your CRM, checks availability and books a meeting in your calendar. The fourth is hand-over: deciding when the bot passes a conversation to a person, and making sure that person gets the full history. We list each of these in the quote, so you can launch with the website and your main documents first and add channels later.",
+          ],
+        },
+        {
+          title: "Running costs after launch",
+          paragraphs: [
+            "A chatbot has two kinds of cost after it goes live. AI usage is billed per conversation, so it grows with your traffic and stays small for most business websites. Maintenance covers updating the knowledge when your prices or services change, checking conversations the bot could not answer and adjusting its rules; plan for about 15–20% of the build cost per year. We show you the expected monthly usage before you decide, so there are no surprises on the first invoice.",
+          ],
+        },
+        {
+          title: "How we keep answers accurate",
+          paragraphs: [
+            "Most complaints about chatbots come from bots that guess. We prevent that by limiting the bot to the material you approve, asking it to quote prices and policies only from that material, and setting clear rules for when to say \"I'm not sure, let me connect you with our team\". Before launch we test it on a list of real questions your staff hear every week, and you approve the answers. After launch, you see the questions it could not answer, which is also a useful list of gaps in your website content.",
+          ],
+        },
+        {
+          title: "What we need from you",
+          paragraphs: [
+            "To start, we need your current FAQs, product or service pages, price lists and any internal documents the bot may quote, plus one person who can approve answers. It also helps to know where leads should go today, such as an email inbox, a CRM or a booking calendar. With that material we can give you a fixed scope and price after the first call.",
+          ],
+        },
       ],
     },
     vi: {
@@ -179,11 +210,42 @@ export const SERVICE_EXTRA: Record<string, Record<Lang, ServiceExtraLang>> = {
         { tier: "Trợ lý AI tích hợp sâu", price: "30 – 100 triệu đồng trở lên", desc: "Nhiều kênh, nhiều quy trình, kết nối CRM/ERP." },
       ],
       pricingNote: "Giá khởi điểm cho phần xây dựng. Phí gọi AI tính theo số cuộc trò chuyện, bảo trì khoảng 15–20% chi phí xây dựng mỗi năm. Bạn nhận báo giá chi tiết sau cuộc gọi miễn phí 15 phút.",
-      guide: { title: "Chi phí thật của Chatbot AI cho doanh nghiệp", href: "/vi/blog/real-cost-of-ai-chatbot" },
+      guide: { title: "Báo giá phát triển chatbot AI cho website năm 2026", href: "/vi/blog/bao-gia-chatbot-ai-cho-website" },
       faqs: [
         { q: "Làm chatbot AI cho website giá bao nhiêu?", a: "Chatbot theo yêu cầu thường từ 15–30 triệu đồng; trợ lý AI tích hợp sâu nhiều hệ thống từ 30 đến hơn 100 triệu đồng." },
         { q: "Sau khi chạy thì tốn thêm chi phí gì?", a: "Phí gọi AI tính theo số cuộc trò chuyện nên đi theo lượng khách. Nên dự trù bảo trì khoảng 15–20% chi phí xây dựng mỗi năm." },
         AFTER_LAUNCH.vi,
+        { q: "Chatbot có tự bịa câu trả lời không?", a: "Chúng tôi giới hạn chatbot trong tài liệu của bạn và yêu cầu nó nói chưa biết khi không có câu trả lời. Câu hỏi ngoài phạm vi được chuyển cho nhân viên kèm toàn bộ cuộc trò chuyện." },
+        { q: "Chatbot chạy được trên kênh nào?", a: "Trước hết là website, sau đó có thể thêm Facebook Messenger, Zalo OA hoặc WhatsApp. Mỗi kênh thêm được ghi riêng trong báo giá." },
+        { q: "Làm chatbot mất bao lâu?", a: "Chatbot trên website trả lời từ tài liệu của bạn thường mất 2–4 tuần, gồm cả một vòng thử trên câu hỏi thật của team bạn." },
+        { q: "Chatbot có trả lời được cả tiếng Việt và tiếng Anh?", a: "Có. Chatbot trả lời theo ngôn ngữ của khách, và chúng tôi thử cả hai ngôn ngữ trên câu hỏi thật trước khi chạy chính thức." },
+      ],
+      sections: [
+        {
+          title: "Điều gì quyết định giá làm chatbot",
+          paragraphs: [
+            "Giá một chatbot làm riêng phụ thuộc ít vào mô hình AI mà nhiều hơn vào việc chatbot cần biết gì và nối với đâu. Yếu tố đầu tiên là nguồn kiến thức: một trang câu hỏi thường gặp thì chuẩn bị nhanh, còn hàng trăm trang sản phẩm, file PDF và bảng giá cần được làm sạch, sắp xếp để chatbot tìm đúng câu trả lời. Yếu tố thứ hai là kênh. Chatbot trên website là điểm bắt đầu; thêm Messenger, Zalo hay WhatsApp nghĩa là thêm phần kiểm thử và thêm nơi cần lưu lại cuộc trò chuyện.",
+            "Yếu tố thứ ba là tích hợp. Chatbot chỉ trả lời câu hỏi đơn giản hơn chatbot tạo khách tiềm năng trong CRM, kiểm tra lịch trống và đặt lịch hẹn. Yếu tố thứ tư là chuyển cho người thật: khi nào chatbot nhường cuộc trò chuyện cho nhân viên, và nhân viên nhận được đầy đủ lịch sử ra sao. Chúng tôi ghi rõ từng mục trong báo giá, để bạn có thể chạy trước trên website với tài liệu chính rồi thêm kênh sau.",
+          ],
+        },
+        {
+          title: "Chi phí vận hành sau khi chạy",
+          paragraphs: [
+            "Sau khi chạy, chatbot có hai loại chi phí. Phí gọi AI tính theo số cuộc trò chuyện, nên tăng theo lượng khách và thường khá nhỏ với website doanh nghiệp. Bảo trì gồm cập nhật kiến thức khi giá hay dịch vụ thay đổi, xem lại những câu chatbot chưa trả lời được và chỉnh quy tắc; nên dự trù khoảng 15–20% chi phí xây dựng mỗi năm. Chúng tôi ước tính phí sử dụng hằng tháng trước khi bạn quyết định, để hóa đơn đầu tiên không có gì bất ngờ.",
+          ],
+        },
+        {
+          title: "Cách chúng tôi giữ câu trả lời chính xác",
+          paragraphs: [
+            "Phần lớn phàn nàn về chatbot đến từ việc chatbot đoán mò. Chúng tôi tránh điều đó bằng cách giới hạn chatbot trong tài liệu bạn đã duyệt, chỉ cho phép nêu giá và chính sách lấy từ tài liệu đó, và đặt quy tắc rõ khi nào phải nói \"Tôi chưa chắc, để tôi kết nối bạn với nhân viên\". Trước khi chạy, chúng tôi thử trên danh sách câu hỏi thật mà nhân viên của bạn nghe mỗi tuần và bạn duyệt từng câu trả lời. Sau khi chạy, bạn xem được những câu chatbot chưa trả lời được, đó cũng là danh sách nội dung website còn thiếu.",
+          ],
+        },
+        {
+          title: "Bạn cần chuẩn bị gì",
+          paragraphs: [
+            "Để bắt đầu, chúng tôi cần câu hỏi thường gặp hiện có, trang sản phẩm hoặc dịch vụ, bảng giá và các tài liệu nội bộ chatbot được phép trích dẫn, cùng một người bên bạn có thể duyệt câu trả lời. Bạn cũng cho biết khách tiềm năng hiện đang đổ về đâu, như hộp thư, CRM hay lịch hẹn. Với những tài liệu đó, chúng tôi đưa được phạm vi và giá cố định ngay sau cuộc gọi đầu tiên. Xem thêm bảng giá chi tiết trong bài báo giá chatbot AI cho website.",
+          ],
+        },
       ],
     },
   },
