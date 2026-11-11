@@ -351,6 +351,47 @@
   white-space: nowrap;
 }
 
+/* Related service pages under an article */
+.related {
+  margin-top: 3rem;
+}
+
+.related h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.related ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.related a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.related a:hover strong {
+  text-decoration: underline;
+}
+
+.related span {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
 /* Article footer CTA */
 .articleCta {
   margin-top: 3.5rem;

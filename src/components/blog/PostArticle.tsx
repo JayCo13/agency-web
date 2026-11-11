@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import styles from "@/app/blog/blog.module.css";
 import type { Lang, LocalizedPost } from "@/lib/blog";
+import { relatedServices } from "@/lib/related-services";
 
 const T = {
   en: {
@@ -14,6 +15,8 @@ const T = {
       "Book a free 15-minute discovery call and let's talk about your specific requirements.",
     ctaBtn: "Book a free call",
     contact: "/#contact",
+    related: "Related services",
+    services: "/services",
   },
   vi: {
     back: "← Tất cả bài viết",
@@ -24,6 +27,8 @@ const T = {
       "Đặt lịch tư vấn miễn phí 15 phút để cùng trao đổi về yêu cầu cụ thể của bạn.",
     ctaBtn: "Đặt lịch miễn phí",
     contact: "/vi/#contact",
+    related: "Dịch vụ liên quan",
+    services: "/vi/services",
   },
 } as const;
 
@@ -44,6 +49,7 @@ export default function PostArticle({
   post: LocalizedPost;
 }) {
   const t = T[lang];
+  const related = relatedServices(post.slug, post.tags);
 
   return (
     <article className={styles.article}>
@@ -82,6 +88,22 @@ export default function PostArticle({
       <div className={styles.prose}>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
       </div>
+
+      {related.length > 0 && (
+        <nav className={styles.related} aria-label={t.related}>
+          <h2>{t.related}</h2>
+          <ul>
+            {related.map((s) => (
+              <li key={s.slug}>
+                <a href={`${t.services}/${s.slug}`}>
+                  <strong>{s[lang].name}</strong>
+                  <span>{s[lang].tagline}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
 
       <div className={styles.articleCta}>
         <h3>{t.ctaTitle}</h3>
