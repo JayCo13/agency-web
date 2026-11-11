@@ -137,6 +137,29 @@ export const SERVICE_EXTRA: Record<string, Record<Lang, ServiceExtraLang>> = {
         { q: "How much does a management system cost?", a: "A first module usually starts at $3,000–$7,000; a company-wide system from $10,000. You receive an itemised quote, so you can choose what to build first." },
         { q: "Can we start with one department?", a: "Yes. Many systems start with one module and grow from there. We plan the data model for the whole company early, so later modules fit in." },
         AFTER_LAUNCH.en,
+        { q: "Can you move our data out of Excel or old software?", a: "Yes. We clean and import your spreadsheets or exports, merge duplicate records and check the totals with you before the old files are retired." },
+        { q: "How long does the first module take?", a: "Most first modules go live within a few weeks. You try a working version at the end of each short stage, so the timeline is visible from the start." },
+      ],
+      sections: [
+        {
+          title: "Signs you have outgrown spreadsheets",
+          paragraphs: [
+            "Spreadsheets work well until several people edit the same numbers. The usual signs are familiar: two versions of the customer list, a stock figure nobody trusts, approvals that live in chat messages and a monthly report that takes a whole day to put together. Each of these costs a little time every day, and the cost grows with every new employee.",
+            "A management system replaces those files with one database. Each record has an owner, every change is logged, and reports are built from live data instead of copied totals. Your team keeps the steps they already know, but the system does the copying, checking and reminding.",
+          ],
+        },
+        {
+          title: "Custom system or ready-made ERP?",
+          paragraphs: [
+            "A ready-made ERP or CRM is the right choice when your process is standard and the licence fee per user stays affordable. A custom system pays off when you keep bending your process to fit the software, pay for modules you never open, or need rules that no package supports, such as special pricing, multi-step approvals or a mix of retail and wholesale. Because you own the code, there is no per-seat fee and the system can grow with the company.",
+          ],
+        },
+        {
+          title: "Security and ownership",
+          paragraphs: [
+            "Every system has role-based access, so each person only sees and changes what their job requires. Sensitive actions are logged and the system runs over HTTPS. When the project ends you receive the source code, the database and the documentation needed to run it.",
+          ],
+        },
       ],
     },
     vi: {
@@ -153,6 +176,37 @@ export const SERVICE_EXTRA: Record<string, Record<Lang, ServiceExtraLang>> = {
         { q: "Hệ thống quản lý theo yêu cầu giá bao nhiêu?", a: "Phân hệ đầu tiên thường từ 20–40 triệu đồng, hệ thống toàn công ty từ 60 triệu đồng. Báo giá chia theo hạng mục để bạn chọn phần nào làm trước." },
         { q: "Có thể bắt đầu với một phòng ban không?", a: "Có. Nhiều hệ thống bắt đầu từ một phân hệ rồi mở rộng dần. Mô hình dữ liệu được tính cho cả công ty từ sớm, để các phân hệ sau ghép vào thuận lợi." },
         AFTER_LAUNCH.vi,
+        { q: "Có chuyển được dữ liệu từ Excel hoặc phần mềm cũ không?", a: "Được. Chúng tôi làm sạch và nhập dữ liệu từ file Excel hoặc file xuất của phần mềm cũ, gộp các bản ghi trùng và cùng bạn đối chiếu số liệu trước khi bỏ file cũ." },
+        { q: "Phân hệ đầu tiên mất bao lâu?", a: "Phần lớn phân hệ đầu tiên chạy thật sau vài tuần. Cuối mỗi giai đoạn ngắn bạn dùng thử bản chạy thật, nên tiến độ luôn rõ ràng ngay từ đầu." },
+        { q: "Phần mềm quản lý theo yêu cầu khác phần mềm có sẵn ở điểm nào?", a: "Phần mềm có sẵn bắt quy trình của bạn đi theo nó và tính phí theo số người dùng. Phần mềm theo yêu cầu làm đúng quy trình của bạn, không phí theo tài khoản, và mã nguồn thuộc về bạn sau bàn giao." },
+      ],
+      sections: [
+        {
+          title: "Dấu hiệu doanh nghiệp đã vượt quá Excel",
+          paragraphs: [
+            "Excel dùng tốt cho đến khi nhiều người cùng sửa một bảng số. Dấu hiệu thường rất quen: hai phiên bản danh sách khách hàng, số tồn kho không ai dám tin, việc duyệt đơn nằm rải rác trong tin nhắn Zalo, và báo cáo cuối tháng mất cả ngày mới tổng hợp xong. Mỗi chuyện chỉ tốn vài phút mỗi ngày, nhưng cộng lại thành nhiều giờ và tăng lên theo mỗi nhân viên mới.",
+            "Một hệ thống quản lý thay các file đó bằng một cơ sở dữ liệu chung. Mỗi bản ghi có người phụ trách, mọi thay đổi đều được ghi lại, và báo cáo lấy từ dữ liệu đang chạy thay vì số liệu chép tay. Nhân viên vẫn làm theo các bước quen thuộc, còn việc chép, kiểm tra và nhắc việc do hệ thống làm.",
+          ],
+        },
+        {
+          title: "Những phân hệ doanh nghiệp hay làm trước",
+          paragraphs: [
+            "Phân hệ đầu tiên nên là nơi đang tốn thời gian nhất. Với cửa hàng và nhà phân phối, đó thường là quản lý đơn hàng và tồn kho: nhận đơn từ nhiều kênh, trừ kho tự động, cảnh báo khi hàng sắp hết. Với công ty dịch vụ, đó là quản lý khách hàng và hợp đồng: lịch sử chăm sóc, nhắc gia hạn, công nợ theo từng khách. Với trung tâm đào tạo, đó là học viên, lớp học, học phí và điểm danh.",
+            "Sau phân hệ đầu tiên, các phần khác như duyệt chi, chấm công hay báo cáo quản trị được ghép vào cùng mô hình dữ liệu, nên không phải nhập lại thông tin khách hàng hay sản phẩm ở nơi khác.",
+          ],
+        },
+        {
+          title: "Làm riêng hay mua phần mềm ERP có sẵn?",
+          paragraphs: [
+            "Phần mềm ERP hoặc CRM có sẵn là lựa chọn đúng khi quy trình của bạn giống số đông và phí thuê theo số người dùng vẫn vừa túi tiền. Hệ thống làm riêng đáng đầu tư khi bạn liên tục phải sửa quy trình cho vừa phần mềm, trả tiền cho những phân hệ không bao giờ mở, hoặc cần quy tắc mà phần mềm đóng gói không hỗ trợ, như bảng giá riêng cho từng đại lý, duyệt nhiều cấp hay vừa bán lẻ vừa bán sỉ. Vì mã nguồn thuộc về bạn, không có phí theo tài khoản và hệ thống lớn dần cùng công ty.",
+          ],
+        },
+        {
+          title: "Bảo mật và quyền sở hữu",
+          paragraphs: [
+            "Mọi hệ thống đều có phân quyền theo vai trò, mỗi người chỉ xem và sửa đúng phần việc của mình. Các thao tác quan trọng được ghi nhật ký và hệ thống chạy qua HTTPS. Khi kết thúc dự án, bạn nhận toàn bộ mã nguồn, cơ sở dữ liệu và tài liệu vận hành, nên hoàn toàn tự do tiếp tục làm với chúng tôi hoặc giao cho đội khác.",
+          ],
+        },
       ],
     },
   },
